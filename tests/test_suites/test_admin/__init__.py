@@ -1,0 +1,1 @@
+# Admin panel atomic test suite 

@@ -118,7 +118,7 @@ tests/
 │   ├── allure_reports/
 │   ├── screenshots/
 │   └── videos/
-├── requirements-test.txt      # Testing dependencies
+├── requirements.txt           # Testing dependencies
 └── pytest.ini               # Pytest configuration
 ```
 
@@ -740,7 +740,7 @@ jobs:
           python-version: 3.9
       - name: Install dependencies
         run: |
-          pip install -r requirements-test.txt
+          pip install -r requirements.txt
           playwright install
       - name: Run atomic tests
         run: pytest tests/test_suites/test_${{ matrix.test-suite }}/ --parallel 2

@@ -1,0 +1,1 @@
+# Shopping cart atomic test suite 
