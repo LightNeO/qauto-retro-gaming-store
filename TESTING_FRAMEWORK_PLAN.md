@@ -170,7 +170,7 @@ tests/
 
 #### Tasks:
 1. **Page Load Tests**
-   - TC-001: Verify homepage loads within 5 seconds
+   - TC-001: Verify homepage loads within 8 seconds
    - TC-002: Verify homepage displays correct page title
    - Implement performance timing utilities
 

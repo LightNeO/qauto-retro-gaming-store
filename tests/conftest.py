@@ -1,12 +1,18 @@
 import os
 import pytest
 from playwright.sync_api import sync_playwright
+from tests.pages.home_page import HomePage
 
 
 class TestConfig:
     """Test configuration settings
 
     SIMPLE USAGE - ADD 'set' BEFORE LAUNCHING PYTEST:
+
+    PowerShell:
+    set BROWSER=firefox
+    python -m pytest tests/
+
     CMD:
     set BROWSER=firefox
     python -m pytest tests/
@@ -25,6 +31,7 @@ class TestConfig:
     HEADLESS = os.getenv("HEADLESS", "false").lower() == "true"
     TIMEOUT = int(os.getenv("TIMEOUT", "30000"))
     SLOW_MO = int(os.getenv("SLOW_MO", "1000"))
+    # Fullscreen mode - no fixed viewport size needed
 
 
 @pytest.fixture(scope="session")
@@ -42,16 +49,6 @@ def browser_type_launch_args():
     return {
         "headless": TestConfig.HEADLESS,
         "slow_mo": TestConfig.SLOW_MO,
-        # args for stability and CI/CD
-        "args": [
-            "--no-sandbox",
-            "--disable-setuid-sandbox",
-            "--disable-dev-shm-usage",
-            "--disable-accelerated-2d-canvas",
-            "--no-first-run",
-            "--no-zygote",
-            "--disable-gpu",
-        ],
     }
 
 
@@ -99,3 +96,9 @@ def page(context):
 def base_url():
     """Base URL for the application"""
     return TestConfig.BASE_URL
+
+
+@pytest.fixture
+def home_page(page, base_url):
+    """HomePage instance for each homepagetest"""
+    return HomePage(page, base_url)
