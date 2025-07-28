@@ -1,4 +1,5 @@
 from tests.pages.base_page import BasePage
+from tests.locators import homepage_locators
 
 
 class HomePage(BasePage):
@@ -11,5 +12,7 @@ class HomePage(BasePage):
         self.page.goto(self.base_url)
 
     def wait_for_main_content(self, timeout=10000):
-        from tests.locators import homepage_locators
         self.wait_for_element(homepage_locators.MAIN_CONTENT, timeout)
+
+    def get_menu_hover_state(self, locator):
+        return self.page.locator(locator).evaluate("el => el.matches(':hover')")

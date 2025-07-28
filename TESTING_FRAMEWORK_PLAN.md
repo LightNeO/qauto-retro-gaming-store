@@ -647,24 +647,6 @@ class LocatorStrategy:
         'class',             # CSS classes (use specific ones)
         'xpath'              # XPath (use as last resort)
     ]
-    
-    @staticmethod
-    def create_data_qa_locator(element_name):
-        """Create data-qa locator for consistent naming"""
-        return f"[data-qa='{element_name}']"
-    
-    @staticmethod
-    def create_id_locator(element_id):
-        """Create ID locator"""
-        return f"#{element_id}"
-    
-    @staticmethod
-    def create_class_locator(class_name):
-        """Create class locator"""
-        return f".{class_name}"
-```
-
-## 🐛 Bug Testing Strategy
 
 ### Bug Test Implementation:
 ```python
