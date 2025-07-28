@@ -1,7 +1,7 @@
-# 🧪 QA Automation Testing Framework Plan (Atomic)
+# 🧪 QA Automation Testing Framework Plan
 
 ## Overview
-This document outlines the comprehensive testing framework implementation plan for the Retro Gaming Store using Python, pytest, and Playwright with Page Object Model (POM) design pattern. The framework is designed to implement **150+ atomic test cases** that each verify exactly one specific functionality.
+This document outlines the comprehensive testing framework implementation plan for the Retro Gaming Store using Python, pytest, and Playwright with Page Object Model (POM) design pattern. The framework is designed to implement **150+ test cases** that each verify exactly one specific functionality.
 
 ## 🎯 Testing Framework Architecture
 
@@ -122,29 +122,29 @@ tests/
 └── pytest.ini               # Pytest configuration
 ```
 
-## 📋 Implementation Phases (Updated for Atomic Tests)
+## 📋 Implementation Phases
 
 ### Phase 1: Foundation Setup (Week 1)
-**Goal**: Set up the basic testing framework infrastructure for atomic tests
+**Goal**: Set up the basic testing framework infrastructure
 
 #### Tasks:
 1. **Environment Setup**
    - Install Python 3.9+
    - Create virtual environment
    - Install testing dependencies
-   - Configure pytest settings for atomic tests
+   - Configure pytest settings
 
 2. **Base Configuration**
-   - Create `conftest.py` with atomic test fixtures
+   - Create `conftest.py` with fixtures
    - Set up Playwright browser configuration
-   - Configure test data management for atomic scenarios
-   - Set up reporting framework for detailed atomic test results
+   - Configure test data management
+   - Set up reporting framework
 
 3. **Page Object Model Foundation**
-   - Create `base_page.py` with atomic interaction methods
-   - Implement single-action methods for atomic tests
-   - Set up element locators strategy for precise targeting
-   - Create utility functions for atomic assertions
+   - Create `base_page.py` with interaction methods
+   - Implement single-action methods
+   - Set up element locators strategy
+   - Create utility functions for assertions
 
 4. **Locators Management**
    - Create separate locators directory for all element selectors
@@ -152,21 +152,21 @@ tests/
    - Create page-specific locator files for maintainability
    - Use data-qa attributes and semantic selectors for stability
 
-5. **Atomic Test Structure**
+5. **Test Structure**
    - Create test suite directories for each functionality area
-   - Set up atomic test templates
-   - Configure test data for atomic scenarios
-   - Implement atomic test helpers
+   - Set up test templates
+   - Configure test data for scenarios
+   - Implement test helpers
 
 #### Deliverables:
-- Atomic test framework structure
-- Working pytest configuration for atomic tests
-- Base page class with atomic methods
+- Test framework structure
+- Working pytest configuration
+- Base page class with methods
 - Locators directory with organized element selectors
 - Test suite organization structure
 
-### Phase 2: Homepage Atomic Tests (Week 2)
-**Goal**: Implement all homepage atomic test cases (TC-001 to TC-015)
+### Phase 2: Homepage Tests (Week 2)
+**Goal**: Implement all homepage test cases (TC-001 to TC-015)
 
 #### Tasks:
 1. **Page Load Tests**
@@ -195,12 +195,12 @@ tests/
 
 #### Deliverables:
 - Complete homepage page object class
-- 15 atomic homepage test cases
+- 15 homepage test cases
 - Performance timing utilities
 - Social media link testing utilities
 
-### Phase 3: Authentication Atomic Tests (Week 3-4)
-**Goal**: Implement all authentication atomic test cases (TC-016 to TC-051)
+### Phase 3: Authentication Tests (Week 3-4)
+**Goal**: Implement all authentication test cases (TC-016 to TC-051)
 
 #### Tasks:
 1. **Registration Page Tests**
@@ -259,12 +259,12 @@ tests/
 
 #### Deliverables:
 - Complete authentication page object classes
-- 36 atomic authentication test cases
+- 36 authentication test cases
 - JWT token management utilities
 - Form validation testing utilities
 
-### Phase 4: Product Browsing Atomic Tests (Week 5)
-**Goal**: Implement product browsing atomic test cases
+### Phase 4: Product Browsing Tests (Week 5)
+**Goal**: Implement product browsing test cases
 
 #### Tasks:
 1. **Product Listing Tests**
@@ -292,12 +292,12 @@ tests/
 
 #### Deliverables:
 - Complete product page object classes
-- Product browsing atomic test cases
+- Product browsing test cases
 - Search functionality testing utilities
 - Product data validation utilities
 
-### Phase 5: Shopping Cart Atomic Tests (Week 6)
-**Goal**: Implement shopping cart atomic test cases
+### Phase 5: Shopping Cart Tests (Week 6)
+**Goal**: Implement shopping cart test cases
 
 #### Tasks:
 1. **Add to Cart Tests**
@@ -325,12 +325,12 @@ tests/
 
 #### Deliverables:
 - Complete cart page object class
-- Shopping cart atomic test cases
+- Shopping cart test cases
 - Cart calculation testing utilities
 - Bug testing utilities
 
-### Phase 6: Checkout Atomic Tests (Week 7)
-**Goal**: Implement checkout atomic test cases
+### Phase 6: Checkout Tests (Week 7)
+**Goal**: Implement checkout test cases
 
 #### Tasks:
 1. **Checkout Navigation Tests**
@@ -355,12 +355,12 @@ tests/
 
 #### Deliverables:
 - Complete checkout page object class
-- Checkout atomic test cases
+- Checkout test cases
 - Form validation testing utilities
 - Payment processing testing utilities
 
-### Phase 7: Order Management Atomic Tests (Week 8)
-**Goal**: Implement order management atomic test cases
+### Phase 7: Order Management Tests (Week 8)
+**Goal**: Implement order management test cases
 
 #### Tasks:
 1. **Order History Tests**
@@ -382,12 +382,12 @@ tests/
 
 #### Deliverables:
 - Complete orders page object class
-- Order management atomic test cases
+- Order management test cases
 - Order data validation utilities
 - Bug testing utilities
 
-### Phase 8: User Profile Atomic Tests (Week 9)
-**Goal**: Implement user profile atomic test cases
+### Phase 8: User Profile Tests (Week 9)
+**Goal**: Implement user profile test cases
 
 #### Tasks:
 1. **Profile Information Tests**
@@ -403,12 +403,12 @@ tests/
 
 #### Deliverables:
 - Complete profile page object class
-- User profile atomic test cases
+- User profile test cases
 - Profile update testing utilities
 - Bug testing utilities
 
-### Phase 9: Admin Panel Atomic Tests (Week 10)
-**Goal**: Implement admin panel atomic test cases
+### Phase 9: Admin Panel Tests (Week 10)
+**Goal**: Implement admin panel test cases
 
 #### Tasks:
 1. **Admin Authentication Tests**
@@ -423,11 +423,11 @@ tests/
 
 #### Deliverables:
 - Complete admin page object class
-- Admin panel atomic test cases
+- Admin panel test cases
 - Admin authentication testing utilities
 
-### Phase 10: Responsive Design Atomic Tests (Week 11)
-**Goal**: Implement responsive design atomic test cases
+### Phase 10: Responsive Design Tests (Week 11)
+**Goal**: Implement responsive design test cases
 
 #### Tasks:
 1. **Mobile Navigation Tests**
@@ -442,7 +442,7 @@ tests/
 
 #### Deliverables:
 - Complete responsive page object class
-- Responsive design atomic test cases
+- Responsive design test cases
 - Mobile testing utilities
 
 ### Phase 11: Bug Testing Suite (Week 12)
@@ -490,33 +490,33 @@ tests/
 
 #### Tasks:
 1. **Test Reporting**
-   - Allure report configuration for atomic tests
-   - HTML report setup with atomic test details
-   - Screenshot capture for failed atomic tests
-   - Video recording for atomic test execution
+   - Allure report configuration
+   - HTML report setup with test details
+   - Screenshot capture for failed tests
+   - Video recording for test execution
 
 2. **CI/CD Integration**
-   - GitHub Actions setup for atomic tests
-   - Parallel test execution for atomic tests
-   - Automated reporting for atomic test results
-   - Slack notifications for atomic test failures
+   - GitHub Actions setup
+   - Parallel test execution
+   - Automated reporting for test results
+   - Slack notifications for test failures
 
 3. **Performance Testing**
-   - Page load time testing for atomic scenarios
+   - Page load time testing
    - API response time testing
-   - Browser performance metrics for atomic tests
+   - Browser performance metrics
 
 #### Deliverables:
-- Comprehensive test reports for atomic tests
-- CI/CD pipeline for atomic test execution
-- Performance monitoring for atomic tests
-- Automated notifications for atomic test results
+- Comprehensive test reports
+- CI/CD pipeline for test execution
+- Performance monitoring
+- Automated notifications for test results
 
-## 🎮 Atomic Test Implementation Guide
+## 🎮 Test Implementation Guide
 
-### Atomic Test Structure:
+### Test Structure:
 ```python
-# Example atomic test structure
+# Example test structure
 class TestHomepageLoad:
     def test_homepage_loads_within_5_seconds(self, page):
         """TC-001: Verify Homepage Loads Within 5 Seconds"""
@@ -608,10 +608,10 @@ class HomePage(BasePage):
         self.page.click(self.locators.PRODUCTS_MENU_ITEM)
 ```
 
-### Atomic Test Data Management:
+### Test Data Management:
 ```python
-# test_data/atomic_test_data.py
-ATOMIC_TEST_DATA = {
+# test_data/test_data.py
+TEST_DATA = {
     'homepage': {
         'expected_title': 'Retro Gaming Store',
         'expected_menu_items': ['Home', 'Products', 'Cart', 'Login', 'Register'],
@@ -664,7 +664,7 @@ class LocatorStrategy:
         return f".{class_name}"
 ```
 
-## 🐛 Atomic Bug Testing Strategy
+## 🐛 Bug Testing Strategy
 
 ### Bug Test Implementation:
 ```python
@@ -705,29 +705,29 @@ class TestPhantomCartBug:
                 break
 ```
 
-## 📊 Atomic Test Reporting Strategy
+## 📊 Test Reporting Strategy
 
-### Allure Reports for Atomic Tests:
+### Allure Reports:
 - Individual test case reports
-- Screenshot attachments for each atomic test
-- Video recordings for atomic test execution
-- Performance metrics for each atomic test
-- Bug tracking integration for atomic test failures
+- Screenshot attachments for each test
+- Video recordings for test execution
+- Performance metrics for each test
+- Bug tracking integration for test failures
 
-### HTML Reports for Atomic Tests:
-- Self-contained HTML reports with atomic test details
-- Screenshot galleries for each atomic test
-- Test execution timeline for atomic tests
-- Pass/fail statistics for atomic test cases
+### HTML Reports:
+- Self-contained HTML reports with test details
+- Screenshot galleries for each test
+- Test execution timeline
+- Pass/fail statistics for test cases
 
-## 🚀 CI/CD Integration for Atomic Tests
+## 🚀 CI/CD Integration
 
-### GitHub Actions Workflow for Atomic Tests:
+### GitHub Actions Workflow:
 ```yaml
-name: Atomic QA Automation Tests
+name: QA Automation Tests
 on: [push, pull_request]
 jobs:
-  atomic-tests:
+  tests:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -742,15 +742,15 @@ jobs:
         run: |
           pip install -r requirements.txt
           playwright install
-      - name: Run atomic tests
+      - name: Run tests
         run: pytest tests/test_suites/test_${{ matrix.test-suite }}/ --parallel 2
-      - name: Generate atomic test reports
+      - name: Generate test reports
         run: |
           allure generate reports/allure_reports --clean
-          pytest --html=reports/html_reports/atomic_report_${{ matrix.test-suite }}.html
+          pytest --html=reports/html_reports/report_${{ matrix.test-suite }}.html
 ```
 
-## 📚 Learning Resources for Atomic Testing
+## 📚 Learning Resources for Testing
 
 ### Documentation:
 - [Playwright Python Documentation](https://playwright.dev/python/)
@@ -765,48 +765,39 @@ jobs:
 4. Add performance timing tests
 5. Implement bug reproduction tests
 
-## 🎯 Success Metrics for Atomic Tests
+## 🎯 Success Metrics
 
 ### Framework Quality:
-- 150+ atomic test cases implemented
-- <5% flaky atomic tests
-- <10 seconds average atomic test execution time
-- Comprehensive bug detection in atomic scenarios
+- 150+ test cases implemented
+- <5% flaky tests
+- <10 seconds average test execution time
+- Comprehensive bug detection
 
 ### Code Quality:
-- Clean, maintainable atomic test code
-- Proper documentation for each atomic test
-- Consistent naming conventions for atomic tests
-- Modular architecture for atomic test organization
+- Clean, maintainable test code
+- Proper documentation for each test
+- Consistent naming conventions
+- Modular architecture for test organization
 
 ### Reporting Quality:
-- Clear, actionable reports for atomic tests
-- Detailed failure analysis for atomic test cases
-- Performance metrics for atomic tests
-- Bug tracking integration for atomic test failures
+- Clear, actionable reports
+- Detailed failure analysis for test cases
+- Performance metrics
+- Bug tracking integration
 
 ---
 
-## 🚀 Getting Started with Atomic Tests
-
-1. **Clone the repository and navigate to the project**
-2. **Create a new branch for atomic testing framework**: `git checkout -b feature/atomic-testing-framework`
-3. **Follow the implementation phases above**
-4. **Start with Phase 1: Foundation Setup**
-5. **Practice each atomic test thoroughly before moving to the next**
-6. **Document your learning and challenges with atomic testing**
-
-## 💡 Tips for Atomic Testing Success
+## 💡 Tips for Testing Success
 
 - **Start Small**: Begin with single element verification tests
-- **Practice Regularly**: Implement atomic tests daily
-- **Document Everything**: Keep notes of your atomic testing learning
-- **Ask Questions**: Use the comprehensive atomic test scenarios as reference
-- **Iterate**: Improve your atomic tests based on feedback
+- **Practice Regularly**: Implement tests daily
+- **Document Everything**: Keep notes of your testing learning
+- **Ask Questions**: Use the comprehensive test scenarios as reference
+- **Iterate**: Improve your tests based on feedback
 - **Focus on One Thing**: Each test should verify exactly one functionality
-- **Measure Performance**: Track execution time for each atomic test
+- **Measure Performance**: Track execution time for each test
 - **Use External Locators**: Keep all element selectors in separate locator files for maintainability
 - **Follow Locator Strategy**: Use data-qa attributes as primary locators for stability
 - **Organize Locators**: Group locators by page/functionality for easy maintenance
 
-**Happy Atomic Testing! 🎮🧪** 
+**Happy Testing! 🎮🧪** 

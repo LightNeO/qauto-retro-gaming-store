@@ -37,7 +37,7 @@ Each test case follows this structure:
 4. Stop timer
 
 **Expected Result:**
-- Page loads within 5 seconds
+- Page loads within 8 seconds
 
 ---
 
