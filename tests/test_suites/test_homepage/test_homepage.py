@@ -60,12 +60,12 @@ class TestHomepage:
         home_page.navigate_to_homepage()
         header_text = home_page.get_element_text(homepage_locators.HEADER)
         # Clean whitespace and newlines
-        header_text_clean = ' '.join(header_text.split())
+        header_text_clean = " ".join(header_text.split())
 
         for expected_item in homepage_test_data.EXPECTED_HEADER_DATA:
-            assert expected_item in header_text_clean, (
-                f"Expected header item '{expected_item}' not found"
-            )
+            assert (
+                expected_item in header_text_clean
+            ), f"Expected header item '{expected_item}' not found"
 
     @pytest.mark.smoke
     def test_menu_items_hover_effects(self, home_page):
@@ -78,19 +78,19 @@ class TestHomepage:
         3. Verify hover effect is applied to each item
         """
         home_page.navigate_to_homepage()
-        
+
         # Test hover effects for all menu items
         menu_items = [
             (homepage_locators.PRODUCTS_MENU_ITEM, "Products"),
             (homepage_locators.CART_MENU_ITEM, "Cart"),
             (homepage_locators.LOGIN_MENU_ITEM, "Login"),
-            (homepage_locators.REGISTER_MENU_ITEM, "Register")
+            (homepage_locators.REGISTER_MENU_ITEM, "Register"),
         ]
-        
+
         for locator, menu_name in menu_items:
             # Hover over menu item
             home_page.page.hover(locator)
-            
+
             # Verify hover effect is applied
             hover_state = home_page.get_menu_hover_state(locator)
             assert hover_state, f"{menu_name} menu hover effect not applied"
@@ -107,22 +107,65 @@ class TestHomepage:
         4. Verify hover effects disappear
         """
         home_page.navigate_to_homepage()
-        
+
         # Test hover effects disappearing for all menu items
         menu_items = [
             (homepage_locators.PRODUCTS_MENU_ITEM, "Products"),
             (homepage_locators.CART_MENU_ITEM, "Cart"),
             (homepage_locators.LOGIN_MENU_ITEM, "Login"),
-            (homepage_locators.REGISTER_MENU_ITEM, "Register")
+            (homepage_locators.REGISTER_MENU_ITEM, "Register"),
         ]
-        
+
         for locator, menu_name in menu_items:
             # Hover over menu item
             home_page.page.hover(locator)
-            
+
             # Move mouse away from menu item
             home_page.page.mouse.move(0, 0)
-            
+
             # Verify hover effect disappears
             hover_state = home_page.get_menu_hover_state(locator)
             assert not hover_state, f"{menu_name} menu hover effect did not disappear"
+
+    @pytest.mark.smoke
+    def test_verify_footer_is_visible(self, home_page):
+        """
+        TC-009: Verify footer is visible
+
+        Steps:
+        1. Navigate to homepage
+        2. Verify footer is visible
+        """
+        home_page.navigate_to_homepage()
+        expect(home_page.page.locator(homepage_locators.FOOTER)).to_be_visible()
+
+    @pytest.mark.smoke
+    def test_verify_footer_sections(self, home_page):
+        """
+        TC-010: Verify footer sections are visible and contain expected data
+
+        Steps:
+        1. Navigate to homepage
+        2. Verify footer sections are visible and contain expected data
+        """
+        home_page.navigate_to_homepage()
+        footer_sections = home_page.get_element_text(homepage_locators.FOOTER)
+        for section in homepage_test_data.EXPECTED_FOOTER_SECTIONS:
+            assert section in footer_sections, f"Footer section '{section}' not found"
+
+    @pytest.mark.test
+    def test_verify_footer_sections_quick_links_redirect(self, home_page):
+        """
+        TC-011: Verify footer sections quick links redirect to the correct page
+
+        Steps:
+        1. Navigate to homepage
+        2. Click on each quick link
+        3. Verify the page redirects to the correct page
+        """
+        home_page.navigate_to_homepage()
+        footer_quick_links = homepage_locators.FOOTER_QUICK_LINKS
+        expected_links_text = homepage_test_data.EXPECTED_FOOTER_QUICK_LINKS
+        for link in footer_quick_links:
+            link_text = home_page.get_element(link).get_attribute("href")
+            assert link_text in expected_links_text, f"Link '{link_text}' not found in expected links"

@@ -175,10 +175,10 @@ tests/
    - Implement performance timing utilities
 
 2. **Navigation Tests**
-   - TC-003: Verify homepage displays header navigation menu
-   - TC-004: Verify header navigation menu contains required items
-   - TC-007: Verify Products menu item hover effect
-   - TC-008: Verify Products menu item hover effect disappears
+    - TC-003: Verify homepage displays header navigation menu
+    - TC-004: Verify header navigation menu contains required items
+    - TC-007: Verify Products menu item hover effect
+    - TC-008: Verify Products menu item hover effect disappears
    - TC-009: Verify navigation to products page
    - TC-010: Verify products page loads successfully
 

@@ -36,3 +36,21 @@ class BasePage:
 
     def wait_for_page_load(self):
         self.page.wait_for_load_state("networkidle")
+
+    def get_elements(self, locator):
+        try:
+            return self.page.locator(locator).all()
+        except Exception as e:
+            raise Exception(f"Failed to get elements with locator {locator}: {e}")
+
+    def get_element(self, locator):
+        try:
+            return self.page.locator(locator)
+        except Exception as e:
+            raise Exception(f"Failed to get element with locator {locator}: {e}")
+
+    def get_attribute(self, element, attribute):
+        try:
+            return element.get_attribute(attribute)
+        except Exception as e:
+            raise Exception(f"Failed to get attribute '{attribute}' from element: {e}")

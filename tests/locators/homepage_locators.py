@@ -10,3 +10,11 @@ PRODUCTS_MENU_ITEM = "[data-qa='nav-products']"
 CART_MENU_ITEM = "[data-qa='nav-cart']"
 LOGIN_MENU_ITEM = "[data-qa='nav-login']"
 REGISTER_MENU_ITEM = "[data-qa='nav-register']"
+FOOTER = "[data-qa='footer']"
+FOOTER_QUICK_LINKS = [
+    "[data-qa='footer-products']",
+    "[data-qa='footer-cart']",
+    "[data-qa='footer-login']",
+    "[data-qa='footer-register']",
+    "[data-qa='footer-admin']",
+]
