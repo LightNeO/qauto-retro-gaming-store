@@ -31,7 +31,6 @@ class TestConfig:
     HEADLESS = os.getenv("HEADLESS", "false").lower() == "true"
     TIMEOUT = int(os.getenv("TIMEOUT", "30000"))
     SLOW_MO = int(os.getenv("SLOW_MO", "1000"))
-    # Fullscreen mode - no fixed viewport size needed
 
 
 @pytest.fixture(scope="session")
@@ -40,6 +39,7 @@ def browser_context_args():
     return {
         "ignore_https_errors": True,
         "accept_downloads": True,
+        "no_viewport": True,     # Fullscreen mode
     }
 
 
@@ -49,6 +49,7 @@ def browser_type_launch_args():
     return {
         "headless": TestConfig.HEADLESS,
         "slow_mo": TestConfig.SLOW_MO,
+        "args": ["--start-maximized"],     # Fullscreen mode
     }
 
 
