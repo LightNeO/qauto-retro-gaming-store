@@ -170,25 +170,22 @@ tests/
 
 #### Tasks:
 1. **Page Load Tests**
-   - TC-001: Verify homepage loads within 8 seconds
+   - TC-001: Verify homepage loads within 10 seconds
    - TC-002: Verify homepage displays correct page title
    - Implement performance timing utilities
 
-2. **Navigation Tests**
-    - TC-003: Verify homepage displays header navigation menu
-    - TC-004: Verify header navigation menu contains required items
-    - TC-007: Verify Products menu item hover effect
-    - TC-008: Verify Products menu item hover effect disappears
-   - TC-009: Verify navigation to products page
-   - TC-010: Verify products page loads successfully
+2. **Header Tests**
+    - TC-003: Verify header contains expected navigation items
+    - TC-004: Verify Products menu item hover effect
+    - TC-005: Verify Products menu item hover effect disappears
+
 
 3. **Footer Tests**
-   - TC-005: Verify homepage displays footer
-   - TC-011: Verify footer displays contact information
-   - TC-012: Verify Facebook social media icon is visible
-   - TC-013: Verify Facebook social media link opens in new tab
-   - TC-014: Verify Twitter social media icon is visible
-   - TC-015: Verify Twitter social media link opens in new tab
+    - TC-006: Verify footer is visible
+    - TC-007: Verify footer sections are visible and contain expected data
+    - TC-008: Verify footer sections quick links redirect to the correct page
+    - TC-009: Verify social media icons are visible
+    - TC-010: Verify social media links redirect to the correct page
 
 4. **Aesthetic Tests**
    - TC-006: Verify homepage displays retro gaming aesthetic elements

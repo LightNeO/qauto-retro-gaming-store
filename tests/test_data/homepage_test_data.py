@@ -14,3 +14,10 @@ EXPECTED_FOOTER_QUICK_LINKS = [
     "/register/",
     "/admin/",
 ]
+EXPECTED_SOCIAL_MEDIA_LINKS = [
+    "https://www.facebook.com/retrogamingstore",
+    "https://www.twitter.com/retrogamingstore",
+    "https://www.instagram.com/retrogamingstore",
+    "https://www.youtube.com/retrogamingstore",
+    "https://www.discord.com/retrogamingstore",
+]

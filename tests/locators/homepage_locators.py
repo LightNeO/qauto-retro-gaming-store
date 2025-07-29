@@ -18,3 +18,10 @@ FOOTER_QUICK_LINKS = [
     "[data-qa='footer-register']",
     "[data-qa='footer-admin']",
 ]
+SOCIAL_MEDIA_LINKS = [
+    "[data-qa='social-facebook']",
+    "[data-qa='social-twitter']",
+    "[data-qa='social-instagram']",
+    "[data-qa='social-youtube']",
+    "[data-qa='social-discord']",
+]
