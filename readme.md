@@ -187,8 +187,8 @@ tests/
     - TC-009: Verify social media icons are visible
     - TC-010: Verify social media links redirect to the correct page
 
-4. **Aesthetic Tests**
-   - TC-006: Verify homepage displays retro gaming aesthetic elements
+4. **Content Tests**
+   - TC-011: Verify homepage displays only three products
 
 #### Deliverables:
 - Complete homepage page object class

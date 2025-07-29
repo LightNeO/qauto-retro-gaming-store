@@ -175,7 +175,8 @@ def test_verify_footer_sections_quick_links_redirect(home_page):
         link_text = home_page.get_element(link).get_attribute("href")
         assert link_text in expected_links_text, f"Link '{link_text}' not found in expected links"
 
-@pytest.mark.test
+
+@pytest.mark.smoke
 def test_verify_social_media_icons_are_visible(home_page):
     """
     TC-009: Verify social media icons are visible
@@ -188,6 +189,7 @@ def test_verify_social_media_icons_are_visible(home_page):
     social_media_icons = homepage_locators.SOCIAL_MEDIA_LINKS
     for icon in social_media_icons:
         expect(home_page.page.locator(icon)).to_be_visible()
+
 
 @pytest.mark.fail_expected
 def test_verify_social_media_links_redirect(home_page):
@@ -212,4 +214,18 @@ def test_verify_social_media_links_redirect(home_page):
     if failed_links:
         raise AssertionError("Social media links validation failed:\n" + "\n".join(failed_links))
 
-    
+
+@pytest.mark.test
+def test_verify_homepage_displays_only_three_products(home_page):
+    """
+    TC-011: Verify homepage displays only three products
+
+    Steps:
+    1. Navigate to homepage
+    2. Verify homepage displays only three products
+    """
+    home_page.navigate_to_homepage()
+    home_page.wait_for_page_load()
+    # Find direct child div elements of the products section
+    products_in_section = home_page.page.locator(f"{homepage_locators.PRODUCTS_SECTION} > div")
+    expect(products_in_section).to_have_count(3)

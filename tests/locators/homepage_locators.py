@@ -25,3 +25,4 @@ SOCIAL_MEDIA_LINKS = [
     "[data-qa='social-youtube']",
     "[data-qa='social-discord']",
 ]
+PRODUCTS_SECTION = "#featured-products"
