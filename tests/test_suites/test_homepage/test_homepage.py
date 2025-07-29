@@ -173,7 +173,9 @@ def test_verify_footer_sections_quick_links_redirect(home_page):
     expected_links_text = homepage_test_data.EXPECTED_FOOTER_QUICK_LINKS
     for link in footer_quick_links:
         link_text = home_page.get_element(link).get_attribute("href")
-        assert link_text in expected_links_text, f"Link '{link_text}' not found in expected links"
+        assert (
+            link_text in expected_links_text
+        ), f"Link '{link_text}' not found in expected links"
 
 
 @pytest.mark.smoke
@@ -212,10 +214,12 @@ def test_verify_social_media_links_redirect(home_page):
             failed_links.append(f"Link '{link_text}' is broken")
 
     if failed_links:
-        raise AssertionError("Social media links validation failed:\n" + "\n".join(failed_links))
+        raise AssertionError(
+            "Social media links validation failed:\n" + "\n".join(failed_links)
+        )
 
 
-@pytest.mark.test
+@pytest.mark.smoke
 def test_verify_homepage_displays_only_three_products(home_page):
     """
     TC-011: Verify homepage displays only three products
@@ -227,5 +231,35 @@ def test_verify_homepage_displays_only_three_products(home_page):
     home_page.navigate_to_homepage()
     home_page.wait_for_page_load()
     # Find direct child div elements of the products section
-    products_in_section = home_page.page.locator(f"{homepage_locators.PRODUCTS_SECTION} > div")
+    products_in_section = home_page.page.locator(
+        f"{homepage_locators.PRODUCTS_SECTION} > div"
+    )
     expect(products_in_section).to_have_count(3)
+
+
+@pytest.mark.test
+def test_verify_all_product_images_are_visible(home_page):
+    """
+    TC-012: Verify all product images are visible and not broken
+
+    Steps:
+    1. Navigate to products page
+    2. Find all products in PRODUCTS_SECTION
+    3. For each product, verify its image loads successfully
+    """
+    home_page.navigate_to_homepage()
+    home_page.wait_for_page_load()
+
+    product_containers = home_page.page.locator(f"{homepage_locators.PRODUCTS_SECTION} > div")
+    product_count = product_containers.count()
+    for i in range(product_count):
+        # Get the current product container
+        product_container = product_containers.nth(i)
+        # Find the image within this product (nested div > img)
+        product_image = product_container.locator("div > img")
+        # Check if image actually loaded by verifying it has dimensions
+        # This will fail if image is broken and showing placeholder
+        image_width = product_image.evaluate("el => el.naturalWidth")
+        image_height = product_image.evaluate("el => el.naturalHeight")
+        # If image is broken, naturalWidth/naturalHeight will be 0
+        assert image_width > 0 and image_height > 0, f"Product {i + 1} image failed to load"
