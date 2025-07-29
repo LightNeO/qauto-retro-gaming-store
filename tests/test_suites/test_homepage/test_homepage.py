@@ -243,23 +243,16 @@ def test_verify_all_product_images_are_visible(home_page):
     TC-012: Verify all product images are visible and not broken
 
     Steps:
-    1. Navigate to products page
-    2. Find all products in PRODUCTS_SECTION
-    3. For each product, verify its image loads successfully
+    1. Navigate to homepage
+    2. Get all product images
+    3. Verify each image has proper dimensions (not broken)
     """
     home_page.navigate_to_homepage()
     home_page.wait_for_page_load()
+    product_images = home_page.get_all_product_images()
 
-    product_containers = home_page.page.locator(f"{homepage_locators.PRODUCTS_SECTION} > div")
-    product_count = product_containers.count()
-    for i in range(product_count):
-        # Get the current product container
-        product_container = product_containers.nth(i)
-        # Find the image within this product (nested div > img)
-        product_image = product_container.locator("div > img")
-        # Check if image actually loaded by verifying it has dimensions
-        # This will fail if image is broken and showing placeholder
+    # Use i and enumerate to get the index of the product image
+    for i, product_image in enumerate(product_images):
         image_width = product_image.evaluate("el => el.naturalWidth")
         image_height = product_image.evaluate("el => el.naturalHeight")
-        # If image is broken, naturalWidth/naturalHeight will be 0
         assert image_width > 0 and image_height > 0, f"Product {i + 1} image failed to load"

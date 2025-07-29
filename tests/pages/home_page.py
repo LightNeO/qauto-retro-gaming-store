@@ -16,3 +16,15 @@ class HomePage(BasePage):
 
     def get_button_hover_state(self, locator):
         return self.page.locator(locator).evaluate("el => el.matches(':hover')")
+
+    def get_all_product_images(self):
+        """Get all product images from the products section"""
+        product_containers = self.page.locator(f"{homepage_locators.PRODUCTS_SECTION} > div")
+        product_images = []
+        
+        for i in range(product_containers.count()):
+            product_container = product_containers.nth(i)
+            product_image = product_container.locator("div > img")
+            product_images.append(product_image)
+            
+        return product_images
