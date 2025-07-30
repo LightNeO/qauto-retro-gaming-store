@@ -68,7 +68,7 @@ def test_header_contains_expected_data(home_page):
         ), f"Expected header item '{expected_item}' not found"
 
 
-@pytest.mark.test
+@pytest.mark.smoke
 def test_menu_items_hover_effects(home_page):
     """
     TC-004: Verify menu items hover effects
@@ -97,7 +97,7 @@ def test_menu_items_hover_effects(home_page):
         assert hover_state, f"{menu_name} menu hover effect not applied"
 
 
-@pytest.mark.test
+@pytest.mark.smoke
 def test_menu_items_hover_effects_disappear(home_page):
     """
     TC-005: Verify menu items hover effects disappear
@@ -259,7 +259,7 @@ def test_verify_all_product_images_are_visible(home_page):
         assert image_width > 0 and image_height > 0, f"Product {i + 1} image failed to load"
 
 
-@pytest.mark.test
+@pytest.mark.smoke
 def test_view_details_buttons_hover_effects(home_page):
     """
     TC-013: Verify view details buttons hover effects
@@ -278,7 +278,7 @@ def test_view_details_buttons_hover_effects(home_page):
         assert hover_state, f"View details button {index + 1} hover effect not applied"
 
 
-@pytest.mark.test
+@pytest.mark.smoke
 def test_view_details_buttons_hover_effects_disappear(home_page):
     """
     TC-014: Verify view details buttons hover effects disappear
@@ -295,3 +295,20 @@ def test_view_details_buttons_hover_effects_disappear(home_page):
         home_page.page.mouse.move(0, 0)
         hover_state = home_page.get_button_hover_state_by_element(button)
         assert not hover_state, f"View details button {index + 1} hover effect did not disappear"
+
+
+@pytest.mark.test
+def test_verify_click_product_card_not_redirects_to_product_page(home_page):
+    """
+    TC-015: Verify click product card not redirects to product page
+
+    Steps:
+    1. Navigate to homepage
+    2. Click on each product card
+    3. Verify the page does not redirect to the product page
+    """
+    home_page.navigate_to_homepage()
+    product_cards = home_page.get_elements(f"{homepage_locators.PRODUCTS_SECTION} > div")
+    for card in product_cards:
+        card.click()
+        expect(home_page.page).to_have_url(f"{home_page.base_url}/")
