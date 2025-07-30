@@ -216,6 +216,7 @@ def test_verify_social_media_links_redirect(home_page):
     if failed_links:
         raise AssertionError(
             "Social media links validation failed:\n" + "\n".join(failed_links)
+            + "\n" + "THIS IS EXPECTED"
         )
 
 
@@ -237,10 +238,10 @@ def test_verify_homepage_displays_only_three_products(home_page):
     expect(products_in_section).to_have_count(3)
 
 
-@pytest.mark.test
+@pytest.mark.smoke
 def test_verify_all_product_images_are_visible(home_page):
     """
-    TC-012: Verify all product images are visible and not broken
+    TC-012: Verify all product images are visible
 
     Steps:
     1. Navigate to homepage
@@ -256,3 +257,41 @@ def test_verify_all_product_images_are_visible(home_page):
         image_width = product_image.evaluate("el => el.naturalWidth")
         image_height = product_image.evaluate("el => el.naturalHeight")
         assert image_width > 0 and image_height > 0, f"Product {i + 1} image failed to load"
+
+
+@pytest.mark.test
+def test_view_details_buttons_hover_effects(home_page):
+    """
+    TC-013: Verify view details buttons hover effects
+
+    Steps:
+    1. Navigate to homepage
+    2. Hover over each view details button
+    3. Verify hover effect is applied to each button
+    """
+    home_page.navigate_to_homepage()
+    view_details_buttons = home_page.get_elements(homepage_locators.ALL_VIEW_DETAILS_BUTTONS)
+    for index, button in enumerate(view_details_buttons):
+        button.hover()
+
+        hover_state = button.evaluate("el => el.matches(':hover')")
+        assert hover_state, f"View details button {index + 1} hover effect not applied"
+
+
+@pytest.mark.test
+def test_view_details_buttons_hover_effects_disappear(home_page):
+    """
+    TC-014: Verify view details buttons hover effects disappear
+
+    Steps:
+    1. Navigate to homepage
+    2. Hover over each view details button
+    3. Verify hover effect is applied to each button
+    """
+    home_page.navigate_to_homepage()
+    view_details_buttons = home_page.get_elements(homepage_locators.ALL_VIEW_DETAILS_BUTTONS)
+    for index, button in enumerate(view_details_buttons):
+        button.hover()
+        home_page.page.mouse.move(0, 0)
+        hover_state = button.evaluate("el => el.matches(':hover')")
+        assert not hover_state, f"View details button {index + 1} hover effect did not disappear"

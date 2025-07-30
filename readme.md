@@ -189,12 +189,14 @@ tests/
 
 4. **Content Tests**
    - TC-011: Verify homepage displays only three products
+   - TC-012: Verify all product images are visible
+   - TC-013: Verify view details buttons hover effects
+   - TC-014: Verify view details buttons hover effects disappear
 
 #### Deliverables:
 - Complete homepage page object class
 - 15 homepage test cases
 - Performance timing utilities
-- Social media link testing utilities
 
 ### Phase 3: Authentication Tests (Week 3-4)
 **Goal**: Implement all authentication test cases (TC-016 to TC-051)

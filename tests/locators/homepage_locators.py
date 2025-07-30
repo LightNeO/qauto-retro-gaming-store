@@ -26,3 +26,4 @@ SOCIAL_MEDIA_LINKS = [
     "[data-qa='social-discord']",
 ]
 PRODUCTS_SECTION = "#featured-products"
+ALL_VIEW_DETAILS_BUTTONS = "[data-qa='view-product-btn']"
