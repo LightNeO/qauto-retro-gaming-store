@@ -124,7 +124,7 @@ tests/
 
 ## 📋 Implementation Phases
 
-### Phase 1: Foundation Setup (Week 1)
+### Phase 1: Foundation Setup
 **Goal**: Set up the basic testing framework infrastructure
 
 #### Tasks:
@@ -165,7 +165,7 @@ tests/
 - Locators directory with organized element selectors
 - Test suite organization structure
 
-### Phase 2: Homepage Tests (Week 2)
+### Phase 2: Homepage Tests
 **Goal**: Implement all homepage test cases (TC-001 to TC-015)
 
 #### Tasks:

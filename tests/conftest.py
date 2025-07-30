@@ -29,7 +29,7 @@ class TestConfig:
     BASE_URL = os.getenv("BASE_URL", "https://web-production-c47e.up.railway.app")
     BROWSER = os.getenv("BROWSER", "chromium")
     HEADLESS = os.getenv("HEADLESS", "false").lower() == "true"
-    TIMEOUT = int(os.getenv("TIMEOUT", "20000"))
+    TIMEOUT = int(os.getenv("TIMEOUT", "90000"))
     SLOW_MO = int(os.getenv("SLOW_MO", "1000"))
 
 

@@ -68,7 +68,7 @@ def test_header_contains_expected_data(home_page):
         ), f"Expected header item '{expected_item}' not found"
 
 
-@pytest.mark.smoke
+@pytest.mark.test
 def test_menu_items_hover_effects(home_page):
     """
     TC-004: Verify menu items hover effects
@@ -93,11 +93,11 @@ def test_menu_items_hover_effects(home_page):
         home_page.page.hover(locator)
 
         # Verify hover effect is applied
-        hover_state = home_page.get_button_hover_state(locator)
+        hover_state = home_page.get_button_hover_state_by_locator(locator)
         assert hover_state, f"{menu_name} menu hover effect not applied"
 
 
-@pytest.mark.smoke
+@pytest.mark.test
 def test_menu_items_hover_effects_disappear(home_page):
     """
     TC-005: Verify menu items hover effects disappear
@@ -126,7 +126,7 @@ def test_menu_items_hover_effects_disappear(home_page):
         home_page.page.mouse.move(0, 0)
 
         # Verify hover effect disappears
-        hover_state = home_page.get_button_hover_state(locator)
+        hover_state = home_page.get_button_hover_state_by_locator(locator)
         assert not hover_state, f"{menu_name} menu hover effect did not disappear"
 
 
@@ -274,7 +274,7 @@ def test_view_details_buttons_hover_effects(home_page):
     for index, button in enumerate(view_details_buttons):
         button.hover()
 
-        hover_state = button.evaluate("el => el.matches(':hover')")
+        hover_state = home_page.get_button_hover_state_by_element(button)
         assert hover_state, f"View details button {index + 1} hover effect not applied"
 
 
@@ -293,5 +293,5 @@ def test_view_details_buttons_hover_effects_disappear(home_page):
     for index, button in enumerate(view_details_buttons):
         button.hover()
         home_page.page.mouse.move(0, 0)
-        hover_state = button.evaluate("el => el.matches(':hover')")
+        hover_state = home_page.get_button_hover_state_by_element(button)
         assert not hover_state, f"View details button {index + 1} hover effect did not disappear"

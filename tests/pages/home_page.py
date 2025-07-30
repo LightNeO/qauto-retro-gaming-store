@@ -14,8 +14,11 @@ class HomePage(BasePage):
     def wait_for_main_content(self, timeout=10000):
         self.wait_for_element(homepage_locators.MAIN_CONTENT, timeout)
 
-    def get_button_hover_state(self, locator):
+    def get_button_hover_state_by_locator(self, locator):
         return self.page.locator(locator).evaluate("el => el.matches(':hover')")
+
+    def get_button_hover_state_by_element(self, element):
+        return element.evaluate("el => el.matches(':hover')")
 
     def get_all_product_images(self):
         """Get all product images from the products section"""
