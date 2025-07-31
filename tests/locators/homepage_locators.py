@@ -1,7 +1,3 @@
-"""
-Locators for homepage elements
-"""
-
 PAGE_TITLE = "title"
 MAIN_CONTENT = "body"
 NAVIGATION_MENU = "nav"

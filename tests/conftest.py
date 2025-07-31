@@ -2,6 +2,7 @@ import os
 import pytest
 from playwright.sync_api import sync_playwright
 from tests.pages.home_page import HomePage
+from tests.pages.registration_page import RegistrationPage
 
 
 class TestConfig:
@@ -103,3 +104,8 @@ def base_url():
 def home_page(page, base_url):
     """HomePage instance for each homepagetest"""
     return HomePage(page, base_url)
+
+@pytest.fixture
+def registration_page(page, base_url):
+    """RegistrationPage instance for each registration page test"""
+    return RegistrationPage(page, base_url + "/register")

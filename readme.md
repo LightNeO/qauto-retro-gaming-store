@@ -192,6 +192,7 @@ tests/
    - TC-012: Verify all product images are visible
    - TC-013: Verify view details buttons hover effects
    - TC-014: Verify view details buttons hover effects disappear
+   - TC-015: Verify click product card not redirects to product page
 
 #### Deliverables:
 - Complete homepage page object class

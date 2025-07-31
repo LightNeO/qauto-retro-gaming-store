@@ -297,7 +297,7 @@ def test_view_details_buttons_hover_effects_disappear(home_page):
         assert not hover_state, f"View details button {index + 1} hover effect did not disappear"
 
 
-@pytest.mark.test
+@pytest.mark.smoke
 def test_verify_click_product_card_not_redirects_to_product_page(home_page):
     """
     TC-015: Verify click product card not redirects to product page
