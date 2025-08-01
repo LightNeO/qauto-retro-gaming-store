@@ -1,5 +1,4 @@
 from tests.pages.base_page import BasePage
-from tests.locators import registration_page_locators
 
 
 class RegistrationPage(BasePage):

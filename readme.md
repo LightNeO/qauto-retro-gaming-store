@@ -204,11 +204,11 @@ tests/
 
 #### Tasks:
 1. **Registration Page Tests**
-   - TC-016: Verify registration page loads
-   - TC-017: Verify username field is present on registration page
-   - TC-018: Verify email field is present on registration page
-   - TC-019: Verify password field is present on registration page
-   - TC-020: Verify confirm password field is present on registration page
+   - TC-016: Verify registration page loads in 10 sec
+   - TC-017: Verify registration page has correct title
+   - TC-018: Verify username field is present on registration page
+   - TC-019: Verify email field is present on registration page
+   - TC-020: Verify password field is present on registration page
    - TC-021: Verify register button is present on registration page
 
 2. **Registration Input Tests**
