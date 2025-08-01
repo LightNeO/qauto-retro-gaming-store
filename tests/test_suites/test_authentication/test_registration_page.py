@@ -5,7 +5,7 @@ from tests.utils.timer_helper import TimerHelper
 from playwright.sync_api import expect
 
 
-@pytest.mark.test
+@pytest.mark.smoke
 def test_registration_page_loads_within_10_seconds(registration_page):
     """
     TC-001: Verify registration page loads within 10 seconds
@@ -24,7 +24,7 @@ def test_registration_page_loads_within_10_seconds(registration_page):
     )
 
 
-@pytest.mark.test
+@pytest.mark.smoke
 def test_registration_page_has_correct_title(registration_page):
     """
     TC-017: Verify registration page has correct title
@@ -42,7 +42,7 @@ def test_registration_page_has_correct_title(registration_page):
     ), f"Registration page title is '{title}', expected - '{registration_page_test_data.EXPECTED_REGISTRATION_PAGE_TITLE}'"
 
 
-@pytest.mark.test
+@pytest.mark.smoke
 def test_username_field_is_present(registration_page):
     """
     TC-018: Verify username field is present on registration page
@@ -58,7 +58,7 @@ def test_username_field_is_present(registration_page):
     ).to_be_visible()
 
 
-@pytest.mark.test
+@pytest.mark.smoke
 def test_email_field_is_present(registration_page):
     """
     TC-019: Verify email field is present on registration page
@@ -74,7 +74,7 @@ def test_email_field_is_present(registration_page):
     ).to_be_visible()
 
 
-@pytest.mark.test
+@pytest.mark.smoke
 def test_password_field_is_present(registration_page):
     """
     TC-019: Verify password field is present on registration page
@@ -90,7 +90,7 @@ def test_password_field_is_present(registration_page):
     ).to_be_visible()
 
 
-@pytest.mark.test
+@pytest.mark.smoke
 def test_register_button_is_present(registration_page):
     """
     TC-021: Verify register button is present on registration page
@@ -106,7 +106,7 @@ def test_register_button_is_present(registration_page):
     ).to_be_visible()
 
 
-@pytest.mark.test
+@pytest.mark.smoke
 def test_already_have_an_account_link_is_present(registration_page):
     """
     TC-022: Verify already have an account link is present on registration page
@@ -122,3 +122,78 @@ def test_already_have_an_account_link_is_present(registration_page):
             registration_page_locators.ALREADY_HAVE_AN_ACCOUNT_LINK
         )
     ).to_be_visible()
+
+
+@pytest.mark.test
+def test_username_is_required(registration_page):
+    """
+    TC-022: Verify username is required
+
+    Steps:
+    1. Navigate to registration page
+    2. Enter valid email
+    3. Enter valid password
+    4. Click register button
+    5. Verify that the username field is invalid
+    """
+    registration_page.navigate_to_registration_page()
+    registration_page.get_element(registration_page_locators.EMAIL_FIELD).fill(
+        registration_page_test_data.VALID_EMAIL
+    )
+    registration_page.get_element(registration_page_locators.PASSWORD_FIELD).fill(
+        registration_page_test_data.VALID_PASSWORD
+    )
+    registration_page.get_element(registration_page_locators.REGISTER_BUTTON).click()
+    username_field = registration_page.get_element(registration_page_locators.USERNAME_FIELD)
+    is_valid = username_field.evaluate("el => el.checkValidity()")
+    assert not is_valid
+
+
+@pytest.mark.test
+def test_email_is_required(registration_page):
+    """
+    TC-023: Verify email is required
+
+    Steps:
+    1. Navigate to registration page
+    2. Enter valid username
+    3. Enter valid password
+    4. Click register button
+    5. Verify that the email field is invalid
+    """
+    registration_page.navigate_to_registration_page()
+    registration_page.get_element(registration_page_locators.USERNAME_FIELD).fill(
+        registration_page_test_data.VALID_USERNAME
+    )
+    registration_page.get_element(registration_page_locators.PASSWORD_FIELD).fill(
+        registration_page_test_data.VALID_PASSWORD
+    )
+    registration_page.get_element(registration_page_locators.REGISTER_BUTTON).click()
+    email_field = registration_page.get_element(registration_page_locators.EMAIL_FIELD)
+    is_valid = email_field.evaluate("el => el.checkValidity()")
+    assert not is_valid
+
+
+@pytest.mark.test
+def test_password_is_required(registration_page):
+    """
+    TC-024: Verify password is required
+
+    Steps:
+    1. Navigate to registration page
+    2. Enter valid username
+    3. Enter valid email
+    4. Click register button
+    5. Verify that the password field is invalid
+    """
+    registration_page.navigate_to_registration_page()
+    registration_page.get_element(registration_page_locators.USERNAME_FIELD).fill(
+        registration_page_test_data.VALID_USERNAME
+    )
+    registration_page.get_element(registration_page_locators.EMAIL_FIELD).fill(
+        registration_page_test_data.VALID_EMAIL
+    )
+    registration_page.get_element(registration_page_locators.REGISTER_BUTTON).click()
+    password_field = registration_page.get_element(registration_page_locators.PASSWORD_FIELD)
+    is_valid = password_field.evaluate("el => el.checkValidity()")
+    assert not is_valid

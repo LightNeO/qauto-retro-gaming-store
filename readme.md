@@ -211,11 +211,6 @@ tests/
    - TC-020: Verify password field is present on registration page
    - TC-021: Verify register button is present on registration page
 
-2. **Registration Input Tests**
-   - TC-022: Verify username field accepts valid input
-   - TC-023: Verify email field accepts valid input
-   - TC-024: Verify password field accepts valid input
-   - TC-025: Verify confirm password field accepts valid input
 
 3. **Registration Process Tests**
    - TC-026: Verify registration with valid data completes successfully
