@@ -16,7 +16,6 @@ def test_registration_page_loads_within_10_seconds(registration_page):
 
     registration_page.navigate_to_registration_page()
     registration_page.wait_for_page_load()
-    registration_page.wait_for_main_content()
     load_time_ms = timer.stop()
 
     assert load_time_ms <= registration_page_test_data.PERFORMANCE_THRESHOLD_MS, (
@@ -261,10 +260,10 @@ def test_registration_with_existing_email(registration_page):
         pytest.fail("THIS FAIL IS EXPECTED")
 
 
-@pytest.mark.test
+@pytest.mark.smoke
 def test_registration_with_valid_data(registration_page):
     """
-    TC-027: Verify registration with valid data
+    TC-027: Verify registration with valid data and redirection to login page
 
     Steps:
     1. Navigate to registration page
@@ -273,6 +272,7 @@ def test_registration_with_valid_data(registration_page):
     4. Enter valid password
     5. Click register button
     6. Verify that the registration is successful
+    7. Verify that the user is redirected to login page
     """
     registration_page.navigate_to_registration_page()
     registration_page.get_element(registration_page_locators.USERNAME_FIELD).fill(

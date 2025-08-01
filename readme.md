@@ -217,9 +217,8 @@ tests/
 
 3. **Registration Process Tests**
    - TC-025: Verify registration with existing username
-   - TC-026: Verify registration with valid data completes successfully
-   - TC-027: Verify user is automatically logged in after registration
-   - TC-028: Verify user is redirected after successful registration
+   - TC-026: Verify registration with existing email
+   - TC-027: Verify registration with valid data and redirection to login page
 
 4. **Registration Bug Tests**
    - TC-029: Verify registration form displays error for invalid email format
