@@ -6,7 +6,7 @@ from tests.utils.timer_helper import TimerHelper
 from playwright.sync_api import expect
 
 
-@pytest.mark.test
+@pytest.mark.smoke
 def test_login_page_loads_within_10_seconds(login_page):
     """
     TC-001: Verify login page loads within 10 seconds

@@ -292,3 +292,105 @@ def test_registration_with_valid_data(registration_page):
     registration_page.wait_for_page_load()
     login_page_title = registration_page.get_element_text(login_page_locators.TITLE)
     assert login_page_title == "Login"
+
+
+@pytest.mark.test
+def test_registration_with_email_without_at_sign(registration_page):
+    """
+    TC-028: Verify registration with email without @ sign
+
+    Steps:
+    1. Navigate to registration page
+    2. Enter valid username
+    3. Enter invalid email
+    4. Enter valid password
+    5. Click register button
+    6. Verify that the registration is not successful
+    """
+    registration_page.navigate_to_registration_page()
+    username_field = registration_page.get_element(registration_page_locators.USERNAME_FIELD)
+    username_field.fill(
+        registration_page_test_data.get_random_username()
+    )
+    email_field = registration_page.get_element(registration_page_locators.EMAIL_FIELD)
+    email_field.fill(
+        registration_page_test_data.get_email_without_at()
+    )
+    password_field = registration_page.get_element(registration_page_locators.PASSWORD_FIELD)
+    password_field.fill(
+        registration_page_test_data.get_random_password()
+    )
+    register_button = registration_page.get_element(registration_page_locators.REGISTER_BUTTON)
+    register_button.click()
+    email_field = registration_page.get_element(registration_page_locators.EMAIL_FIELD)
+    is_valid = email_field.evaluate("el => el.checkValidity()")
+    assert not is_valid
+
+
+@pytest.mark.fail_expected
+def test_registration_with_email_without_dot(registration_page):
+    """
+    TC-029: Verify registration with email without dot
+
+    Steps:
+    1. Navigate to registration page
+    2. Enter valid username
+    3. Enter email without dot
+    4. Enter valid password
+    5. Click register button
+    6. Verify that the registration is not successful
+    """
+    registration_page.navigate_to_registration_page()
+    username_field = registration_page.get_element(registration_page_locators.USERNAME_FIELD)
+    username_field.fill(
+        registration_page_test_data.get_random_username()
+    )
+    email_field = registration_page.get_element(registration_page_locators.EMAIL_FIELD)
+    email_field.fill(
+        registration_page_test_data.get_email_without_dot()
+    )
+    password_field = registration_page.get_element(registration_page_locators.PASSWORD_FIELD)
+    password_field.fill(
+        registration_page_test_data.get_random_password()
+    )
+    register_button = registration_page.get_element(registration_page_locators.REGISTER_BUTTON)
+    register_button.click()
+    email_field = registration_page.get_element(registration_page_locators.EMAIL_FIELD)
+    is_valid = email_field.evaluate("el => el.checkValidity()")
+    try:
+        assert not is_valid
+    except AssertionError:
+        pytest.fail("THIS FAIL IS EXPECTED")
+
+
+@pytest.mark.test
+def test_registration_with_email_without_domain(registration_page):
+    """
+    TC-030: Verify registration with email without domain
+
+    Steps:
+    1. Navigate to registration page
+    2. Enter valid username
+    3. Enter email without domain
+    4. Enter valid password
+    5. Click register button
+    6. Verify that the registration is not successful
+    """
+    registration_page.navigate_to_registration_page()
+    username_field = registration_page.get_element(registration_page_locators.USERNAME_FIELD)
+    username_field.fill(
+        registration_page_test_data.get_random_username()
+    )
+    email_field = registration_page.get_element(registration_page_locators.EMAIL_FIELD)
+    email_field.fill(
+        registration_page_test_data.get_email_without_domain()
+    )
+    password_field = registration_page.get_element(registration_page_locators.PASSWORD_FIELD)
+    password_field.fill(
+        registration_page_test_data.get_random_password()
+    )
+    register_button = registration_page.get_element(registration_page_locators.REGISTER_BUTTON)
+    register_button.click()
+    email_field = registration_page.get_element(registration_page_locators.EMAIL_FIELD)
+    is_valid = email_field.evaluate("el => el.checkValidity()")
+    assert not is_valid

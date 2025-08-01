@@ -20,6 +20,26 @@ def get_random_password():
     )
 
 
+def get_email_without_at():
+    """Generate email without @ symbol"""
+    username = fake.user_name()
+    domain = fake.domain_name()
+    return f"{username}{domain}"
+
+
+def get_email_without_dot():
+    """Generate email without dot in domain"""
+    username = fake.user_name()
+    domain = fake.word()
+    return f"{username}@{domain}com"
+
+
+def get_email_without_domain():
+    """Generate email without domain part"""
+    username = fake.user_name()
+    return f"{username}@"
+
+
 EXPECTED_REGISTRATION_PAGE_TITLE = "Register"
 PERFORMANCE_THRESHOLD_MS = 10000
 INVALID_USERNAME = " "
@@ -28,4 +48,4 @@ EXISTING_EMAIL = "test@test.com"
 VALID_PASSWORD = "Test@123"
 EXPECTED_REGISTRATION_ERROR_MESSAGE = "Username already exists."
 EXPECTED_REGISTRATION_ERROR_MESSAGE_EMAIL = "Email already exists."
-EXPECTED_REGISTRATION_SUCCESS_MESSAGE = "Registration successful! Redirecting to login..."
+EXPECTED_REGISTRATION_SUCCESS_MESSAGE = "Registration successful!"
