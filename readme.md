@@ -210,9 +210,13 @@ tests/
    - TC-019: Verify email field is present on registration page
    - TC-020: Verify password field is present on registration page
    - TC-021: Verify register button is present on registration page
+   - TC-022: Verify username is required
+   - TC-023: Verify email is required
+   - TC-024: Verify password is required
 
 
 3. **Registration Process Tests**
+   - TC-025: Verify registration with existing username
    - TC-026: Verify registration with valid data completes successfully
    - TC-027: Verify user is automatically logged in after registration
    - TC-028: Verify user is redirected after successful registration

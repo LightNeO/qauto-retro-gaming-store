@@ -23,6 +23,9 @@ def get_random_password():
 EXPECTED_REGISTRATION_PAGE_TITLE = "Register"
 PERFORMANCE_THRESHOLD_MS = 10000
 INVALID_USERNAME = " "
-VALID_USERNAME = "testuser123"
-VALID_EMAIL = "test@test.com"
+EXISTING_USERNAME = "testuser123"
+EXISTING_EMAIL = "test@test.com"
 VALID_PASSWORD = "Test@123"
+EXPECTED_REGISTRATION_ERROR_MESSAGE = "Username already exists."
+EXPECTED_REGISTRATION_ERROR_MESSAGE_EMAIL = "Email already exists."
+EXPECTED_REGISTRATION_SUCCESS_MESSAGE = "Registration successful! Redirecting to login..."
