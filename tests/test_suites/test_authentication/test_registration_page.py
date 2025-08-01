@@ -105,6 +105,7 @@ def test_register_button_is_present(registration_page):
         registration_page.get_element(registration_page_locators.REGISTER_BUTTON)
     ).to_be_visible()
 
+
 @pytest.mark.test
 def test_already_have_an_account_link_is_present(registration_page):
     """
@@ -116,4 +117,8 @@ def test_already_have_an_account_link_is_present(registration_page):
     """
     registration_page.navigate_to_registration_page()
 
-    expect(registration_page.get_element(registration_page_locators.ALREADY_HAVE_AN_ACCOUNT_LINK)).to_be_visible()
+    expect(
+        registration_page.get_element(
+            registration_page_locators.ALREADY_HAVE_AN_ACCOUNT_LINK
+        )
+    ).to_be_visible()
