@@ -294,7 +294,7 @@ def test_registration_with_valid_data(registration_page):
     assert login_page_title == "Login"
 
 
-@pytest.mark.test
+@pytest.mark.smoke
 def test_registration_with_email_without_at_sign(registration_page):
     """
     TC-028: Verify registration with email without @ sign
@@ -363,7 +363,7 @@ def test_registration_with_email_without_dot(registration_page):
         pytest.fail("THIS FAIL IS EXPECTED")
 
 
-@pytest.mark.test
+@pytest.mark.smoke
 def test_registration_with_email_without_domain(registration_page):
     """
     TC-030: Verify registration with email without domain

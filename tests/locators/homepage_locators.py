@@ -23,3 +23,5 @@ SOCIAL_MEDIA_LINKS = [
 ]
 PRODUCTS_SECTION = "#featured-products"
 ALL_VIEW_DETAILS_BUTTONS = "[data-qa='view-product-btn']"
+PROFILE_MENU_ITEM = "[data-qa='nav-profile']"
+LOGOUT_MENU_ITEM = "[data-qa='nav-logout']"

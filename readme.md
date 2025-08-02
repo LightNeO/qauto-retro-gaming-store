@@ -175,17 +175,17 @@ tests/
    - Implement performance timing utilities
 
 2. **Header Tests**
-    - TC-003: Verify header contains expected navigation items
-    - TC-004: Verify Products menu item hover effect
-    - TC-005: Verify Products menu item hover effect disappears
+   - TC-003: Verify header contains expected navigation items
+   - TC-004: Verify Products menu item hover effect
+   - TC-005: Verify Products menu item hover effect disappears
 
 
 3. **Footer Tests**
-    - TC-006: Verify footer is visible
-    - TC-007: Verify footer sections are visible and contain expected data
-    - TC-008: Verify footer sections quick links redirect to the correct page
-    - TC-009: Verify social media icons are visible
-    - TC-010: Verify social media links redirect to the correct page
+   - TC-006: Verify footer is visible
+   - TC-007: Verify footer sections are visible and contain expected data
+   - TC-008: Verify footer sections quick links redirect to the correct page
+   - TC-009: Verify social media icons are visible
+   - TC-010: Verify social media links redirect to the correct page
 
 4. **Content Tests**
    - TC-011: Verify homepage displays only three products
@@ -199,7 +199,7 @@ tests/
 - 15 homepage test cases
 - Performance timing utilities
 
-### Phase 3: Authentication Tests (Week 3-4)
+### Phase 3: Authentication Tests
 **Goal**: Implement all authentication test cases (TC-016 to TC-051)
 
 #### Tasks:
@@ -214,46 +214,36 @@ tests/
    - TC-023: Verify email is required
    - TC-024: Verify password is required
 
-
-3. **Registration Process Tests**
+2. **Registration Process Tests**
    - TC-025: Verify registration with existing username
    - TC-026: Verify registration with existing email
    - TC-027: Verify registration with valid data and redirection to login page
+   - TC-028: Verify registration with email without @ sign
+   **BUG**- TC-029: Verify registration with email without dot
+   - TC-030: Verify registration with email without domain
 
-4. **Registration Bug Tests**
-   - TC-029: Verify registration form displays error for invalid email format
-   - TC-030: Verify registration process does not complete with invalid email
-   - TC-031: Verify user remains on registration page with invalid email
-
-5. **Login Page Tests**
-   - TC-032: Verify login page loads
+3. **Login Page Tests**
+   - TC-031: Verify login page loads within 10 seconds
+   - TC-032: Verify login page has correct title
    - TC-033: Verify username field is present on login page
    - TC-034: Verify password field is present on login page
-   - TC-035: Verify remember me checkbox is present on login page
-   - TC-036: Verify login button is present on login page
+   - TC-035: Verify login button is present on login page
+   - TC-036: Verify username field is required
+   - TC-037: Verify password field is required
 
-6. **Login Input Tests**
-   - TC-037: Verify username field accepts valid input on login page
-   - TC-038: Verify password field accepts valid input on login page
-   - TC-039: Verify remember me checkbox can be checked
+4. **Login Error Tests**
+   - TC-038: Verify error message is displayed for invalid login
+   - TC-039: Verify user remains on login page after invalid login
+   - TC-040: Verify form fields are not cleared after invalid login
 
-7. **Login Process Tests**
-   - TC-040: Verify login with valid credentials completes successfully
-   - TC-041: Verify JWT token is stored after successful login
-   - TC-042: Verify user is redirected after successful login
+5. **Login Process Tests**
+   - TC-041: Verify successful message is displayed after valid login
+   - TC-042: Verify user is redirected to homepage after successful login
+   - TC-043: Verify JWT token is stored after successful login
 
-8. **Login Error Tests**
-   - TC-043: Verify login fails with invalid credentials
-   - TC-044: Verify error message is displayed for invalid login
-   - TC-045: Verify user remains on login page after invalid login
-   - TC-046: Verify form fields are not cleared after invalid login
-
-9. **Logout Tests**
-   - TC-047: Verify logout button is visible when user is logged in
-   - TC-048: Verify logout process completes successfully
-   - TC-049: Verify JWT token is cleared after logout
-   - TC-050: Verify user is redirected to homepage after logout
-   - TC-051: Verify login/register links are visible after logout
+6. **Logout Tests**
+   - TC-044: Verify logout process completes successfully
+   - TC-045: Verify JWT token is cleared after logout
 
 #### Deliverables:
 - Complete authentication page object classes

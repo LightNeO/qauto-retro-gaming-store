@@ -1,1 +1,6 @@
 TITLE = ".text-center.mb-4"
+USERNAME_FIELD = "#username"
+PASSWORD_FIELD = "#password"
+LOGIN_BUTTON = "[type='submit']"
+REGISTER_LINK = "[href='/register']"
+LOGIN_MESSAGE = "#login-error"
