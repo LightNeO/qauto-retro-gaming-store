@@ -1,7 +1,3 @@
-"""
-Timer helper for performance testing
-"""
-
 import time
 
 

@@ -1,3 +1,5 @@
+from playwright.sync_api import expect
+
 
 class BasePage:
 
@@ -54,3 +56,54 @@ class BasePage:
             return element.get_attribute(attribute)
         except Exception as e:
             raise Exception(f"Failed to get attribute '{attribute}' from element: {e}")
+
+    def hover_element_by_locator(self, locator):
+        try:
+            self.page.hover(locator)
+        except Exception as e:
+            raise Exception(f"Failed to hover over element {locator}: {e}")
+
+    def hover_element_by_element(self, element):
+        try:
+            element.hover()
+        except Exception as e:
+            raise Exception(f"Failed to hover over element: {e}")
+
+    def get_hover_state_by_locator(self, locator):
+        return self.page.locator(locator).evaluate("el => el.matches(':hover')")
+
+    def get_hover_state_by_element(self, element):
+        return element.evaluate("el => el.matches(':hover')")
+
+    def is_field_valid(self, locator):
+        return self.page.locator(locator).evaluate("el => el.checkValidity()")
+
+    def clear_field(self, locator):
+        try:
+            self.page.locator(locator).fill("")
+        except Exception as e:
+            raise Exception(f"Failed to clear field {locator}: {e}")
+
+    def get_field_value(self, locator):
+        try:
+            return self.page.locator(locator).input_value()
+        except Exception as e:
+            raise Exception(f"Failed to get value from field {locator}: {e}")
+
+    def expect_element_to_be_visible(self, locator):
+        expect(self.page.locator(locator)).to_be_visible()
+
+    def expect_element_to_have_text(self, locator, text):
+        expect(self.page.locator(locator)).to_have_text(text)
+
+    def expect_element_to_contain_text(self, locator, text):
+        expect(self.page.locator(locator)).to_contain_text(text)
+
+    def expect_element_to_have_value(self, locator, value):
+        expect(self.page.locator(locator)).to_have_value(value)
+
+    def expect_page_to_have_title(self, title):
+        expect(self.page).to_have_title(title)
+
+    def expect_page_to_have_url(self, url):
+        expect(self.page).to_have_url(url)
