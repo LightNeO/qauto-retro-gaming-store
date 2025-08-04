@@ -4,6 +4,7 @@ from playwright.sync_api import sync_playwright
 from tests.pages.home_page import HomePage
 from tests.pages.registration_page import RegistrationPage
 from tests.pages.login_page import LoginPage
+from tests.pages.products_page import ProductsPage
 
 
 class TestConfig:
@@ -117,3 +118,9 @@ def registration_page(page, base_url):
 def login_page(page, base_url):
     """LoginPage instance for each login page test"""
     return LoginPage(page, base_url + "/login")
+
+
+@pytest.fixture
+def products_page(page, base_url):
+    """ProductsPage instance for each products page test"""
+    return ProductsPage(page, base_url + "/products")

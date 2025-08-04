@@ -206,7 +206,7 @@ def test_registration_with_existing_email(registration_page):
         pytest.fail("THIS FAIL IS EXPECTED")
 
 
-@pytest.mark.test
+@pytest.mark.smoke
 def test_registration_with_valid_data(registration_page):
     """
     TC-027: Verify registration with valid data and redirection to login page

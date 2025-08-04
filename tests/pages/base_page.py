@@ -107,3 +107,6 @@ class BasePage:
 
     def expect_page_to_have_url(self, url):
         expect(self.page).to_have_url(url)
+
+    def count_elements(self, locator):
+        return self.page.locator(locator).count()

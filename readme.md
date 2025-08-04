@@ -254,7 +254,8 @@ tests/
 
 #### Tasks:
 1. **Product Listing Tests**
-   - Verify products page loads successfully
+   - TC-046: Verify products page loads within 10 seconds
+   - TC-047: Verify products page has correct title
    - Verify product grid is displayed
    - Verify product cards display required information
    - Verify product images load correctly
