@@ -45,3 +45,34 @@ class ProductsPage(BasePage):
             assert (
                 image_width > 0 and image_height > 0
             ), f"Product {i + 1} image failed to load"
+
+    def get_search_bar(self):
+        return self.get_element(products_page_locators.SEARCH_BAR)
+
+    def expect_search_bar_to_be_visible(self):
+        self.expect_element_to_be_visible(products_page_locators.SEARCH_BAR)
+
+    def get_search_button(self):
+        return self.get_element(products_page_locators.SEARCH_BUTTON)
+
+    def expect_search_button_to_be_visible(self):
+        self.expect_element_to_be_visible(products_page_locators.SEARCH_BUTTON)
+
+    def get_sort_dropdown(self):
+        return self.get_element(products_page_locators.SORT_DROPDOWN)
+
+    def expect_sort_dropdown_to_be_visible(self):
+        self.expect_element_to_be_visible(products_page_locators.SORT_DROPDOWN)
+
+    def search_for_product(self, product_name):
+        self.get_search_bar().fill(product_name)
+        self.get_search_button().click()
+
+    def get_all_products_titles(self):
+        return self.get_elements(products_page_locators.ALL_PRODUCTS_TITLES)
+
+    def expect_no_results_message_to_be_visible(self):
+        self.expect_element_to_have_text(
+            products_page_locators.PRODUCT_CONTAINER,
+            products_page_test_data.NO_RESULTS_TEXT,
+        )

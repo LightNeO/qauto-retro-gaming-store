@@ -256,12 +256,14 @@ tests/
 1. **Product Listing Tests**
    - TC-046: Verify products page loads within 10 seconds
    - TC-047: Verify products page has correct title
-   - Verify product grid is displayed
-   - Verify product cards display required information
-   - Verify product images load correctly
+   - TC-048: Verify product grid is displayed
+   - TC-049: Verify products grid has correct number of products
+   - TC-050: Verify all product images are visible   **BUG**
 
 2. **Product Search Tests**
-   - Verify search bar is present on products page
+   - TC-051: Verify search bar is visible
+   - TC-052: Verify search button is visible
+   - TC-053: Verify sort dropdown is visible
    - Verify search functionality works with "Atari"
    - Verify search results are displayed
    - Verify search with other terms

@@ -25,6 +25,16 @@ class HomePage(BasePage):
 
         return product_images
 
+    def expect_all_product_images_to_be_visible(self):
+        product_images = self.get_all_product_images()
+        # Use i and enumerate to get the index of the product image
+        for i, product_image in enumerate(product_images):
+            image_width = product_image.evaluate("el => el.naturalWidth")
+            image_height = product_image.evaluate("el => el.naturalHeight")
+            assert (
+                image_width > 0 and image_height > 0
+            ), f"Product {i + 1} image failed to load"
+
     def get_all_product_cards(self):
         return self.get_elements(f"{homepage_locators.PRODUCTS_SECTION} > div")
 

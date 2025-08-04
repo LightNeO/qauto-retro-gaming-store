@@ -1,3 +1,4 @@
+from turtle import home
 import pytest
 from tests.test_data import homepage_test_data
 from tests.locators import homepage_locators
@@ -220,15 +221,7 @@ def test_verify_all_product_images_are_visible(home_page):
     3. Verify each image has proper dimensions (not broken)
     """
     home_page.navigate_to_homepage()
-    product_images = home_page.get_all_product_images()
-
-    # Use i and enumerate to get the index of the product image
-    for i, product_image in enumerate(product_images):
-        image_width = product_image.evaluate("el => el.naturalWidth")
-        image_height = product_image.evaluate("el => el.naturalHeight")
-        assert (
-            image_width > 0 and image_height > 0
-        ), f"Product {i + 1} image failed to load"
+    home_page.expect_all_product_images_to_be_visible()
 
 
 @pytest.mark.smoke
