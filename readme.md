@@ -264,9 +264,11 @@ tests/
    - TC-051: Verify search bar is visible
    - TC-052: Verify search button is visible
    - TC-053: Verify sort dropdown is visible
-   - Verify search functionality works with "Atari"
-   - Verify search results are displayed
-   - Verify search with other terms
+   - TC-054: Verify search works with valid product name
+   - TC-055: Verify search works with invalid product name
+   - TC-056: Verify filter low to high price works
+   - TC-057: Verify filter high to low price works
+   - TC-058: Verify filter top rated works
 
 3. **Product Detail Tests**
    - Verify product detail page loads

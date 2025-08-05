@@ -76,3 +76,48 @@ class ProductsPage(BasePage):
             products_page_locators.PRODUCT_CONTAINER,
             products_page_test_data.NO_RESULTS_TEXT,
         )
+
+    def filter_by_low_to_high_price(self):
+        self.get_sort_dropdown().select_option("Price: Low to High")
+
+    def filter_by_high_to_low_price(self):
+        self.get_sort_dropdown().select_option("Price: High to Low")
+
+    def filter_by_top_rated(self):
+        self.get_sort_dropdown().select_option("Top Rated")
+
+    def get_all_products_prices(self):
+        return self.get_elements(products_page_locators.ALL_PRODUCTS_PRICES)
+
+    def get_all_products_ratings(self):
+        return self.get_elements(products_page_locators.ALL_PRODUCTS_STAR_RATINGS)
+
+    def expect_products_to_be_sorted_by_price_in_ascending_order(self):
+        all_products_prices = self.get_all_products_prices()
+        # Use i and enumerate to get the index of the product image
+        for i, product_price in enumerate(all_products_prices[:-1]):
+            current_price = float(product_price.text_content().replace("$", ""))
+            next_price = float(all_products_prices[i + 1].text_content().replace("$", ""))
+            assert (
+                current_price <= next_price
+            ), f"Product {i + 1} price is not in ascending order"
+
+    def expect_products_to_be_sorted_by_price_in_descending_order(self):
+        all_products_prices = self.get_all_products_prices()
+        # Use i and enumerate to get the index of the product image
+        for i, product_price in enumerate(all_products_prices[:-1]):
+            current_price = float(product_price.text_content().replace("$", ""))
+            next_price = float(all_products_prices[i + 1].text_content().replace("$", ""))
+            assert (
+                current_price >= next_price
+            ), f"Product {i + 1} price is not in descending order"
+
+    def expect_products_to_be_sorted_by_rating_in_descending_order(self):
+        all_products_ratings = self.get_all_products_ratings()
+        # Use i and enumerate to get the index of the product image
+        for i, product_rating in enumerate(all_products_ratings[:-1]):
+            current_rating = float(product_rating.text_content().replace("⭐ ", ""))
+            next_rating = float(all_products_ratings[i + 1].text_content().replace("⭐ ", ""))
+            assert (
+                current_rating >= next_rating
+            ), f"Product {i + 1} rating is not in descending order"

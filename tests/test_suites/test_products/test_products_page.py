@@ -111,7 +111,7 @@ def test_verify_sort_dropdown_is_visible(products_page):
     products_page.expect_sort_dropdown_to_be_visible()
 
 
-@pytest.mark.test
+@pytest.mark.smoke
 def test_verify_search_works_with_valid_product_name(products_page):
     """
     TC-054: Verify search works with valid product name
@@ -130,7 +130,7 @@ def test_verify_search_works_with_valid_product_name(products_page):
         )
 
 
-@pytest.mark.test
+@pytest.mark.smoke
 def test_verify_search_with_invalid_product_name(products_page):
     """
     TC-055: Verify search works with invalid product name
@@ -143,3 +143,48 @@ def test_verify_search_with_invalid_product_name(products_page):
     products_page.navigate_to_products_page()
     products_page.search_for_product(products_page_test_data.INVALID_PRODUCT_NAME)
     products_page.expect_no_results_message_to_be_visible()
+
+
+@pytest.mark.smoke
+def test_verify_filter_low_to_high_price_works(products_page):
+    """
+    TC-056: Verify filter low to high price works
+
+    Steps:
+    1. Navigate to products page
+    2. Filter by low to high price
+    3. Verify products are sorted by price in ascending order
+    """
+    products_page.navigate_to_products_page()
+    products_page.filter_by_low_to_high_price()
+    products_page.expect_products_to_be_sorted_by_price_in_ascending_order()
+
+
+@pytest.mark.smoke
+def test_verify_filter_high_to_low_price_works(products_page):
+    """
+    TC-057: Verify filter high to low price works
+
+    Steps:
+    1. Navigate to products page
+    2. Filter by high to low price
+    3. Verify products are sorted by price in descending order
+    """
+    products_page.navigate_to_products_page()
+    products_page.filter_by_high_to_low_price()
+    products_page.expect_products_to_be_sorted_by_price_in_descending_order()
+
+
+@pytest.mark.smoke
+def test_verify_filter_top_rated_works(products_page):
+    """
+    TC-058: Verify filter top rated works
+
+    Steps:
+    1. Navigate to products page
+    2. Filter by top rated
+    3. Verify products are sorted by rating in descending order
+    """
+    products_page.navigate_to_products_page()
+    products_page.filter_by_top_rated()
+    products_page.expect_products_to_be_sorted_by_rating_in_descending_order()
