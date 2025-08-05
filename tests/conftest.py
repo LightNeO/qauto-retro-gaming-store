@@ -5,6 +5,7 @@ from tests.pages.home_page import HomePage
 from tests.pages.registration_page import RegistrationPage
 from tests.pages.login_page import LoginPage
 from tests.pages.products_page import ProductsPage
+from tests.pages.product_detail_page import ProductDetailPage
 
 
 class TestConfig:
@@ -124,3 +125,9 @@ def login_page(page, base_url):
 def products_page(page, base_url):
     """ProductsPage instance for each products page test"""
     return ProductsPage(page, base_url + "/products")
+
+
+@pytest.fixture
+def product_detail_page(page, base_url):
+    """ProductDetailPage instance for each product detail page test"""
+    return ProductDetailPage(page, base_url)
