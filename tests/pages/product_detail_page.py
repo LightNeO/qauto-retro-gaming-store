@@ -70,91 +70,20 @@ class ProductDetailPage(BasePage):
             product_detail_page_locators.PRODUCT_IMAGE, "src"
         )
 
-    # Quantity and cart methods
-    def set_quantity(self, quantity):
-        """Set product quantity"""
-        pass
+    def get_add_to_cart_button(self):
+        return self.get_element(product_detail_page_locators.ADD_TO_CART_BUTTON)
 
-    def increase_quantity(self):
-        """Increase quantity by 1"""
-        pass
+    def expect_add_to_cart_button_to_be_visible(self):
+        self.expect_element_to_be_visible(product_detail_page_locators.ADD_TO_CART_BUTTON)
 
-    def decrease_quantity(self):
-        """Decrease quantity by 1"""
-        pass
+    def get_quantity_input(self):
+        return self.get_element(product_detail_page_locators.QUANTITY_INPUT)
 
-    def get_current_quantity(self):
-        """Get current quantity value"""
-        pass
+    def expect_quantity_input_to_be_visible(self):
+        self.expect_element_to_be_visible(product_detail_page_locators.QUANTITY_INPUT)
 
-    def click_add_to_cart(self):
-        """Click add to cart button"""
-        pass
+    def get_comment_input(self):
+        return self.get_element(product_detail_page_locators.COMMENT_INPUT)
 
-    # Product specifications methods
-    def get_product_specifications(self):
-        """Get product specifications text"""
-        pass
-
-    # Related products methods
-    def get_related_products(self):
-        """Get list of related products"""
-        pass
-
-    def click_related_product(self, index):
-        """Click on related product by index"""
-        pass
-
-    # Reviews methods
-    def get_product_reviews(self):
-        """Get all product reviews"""
-        pass
-
-    def get_review_count(self):
-        """Get total number of reviews"""
-        pass
-
-    def get_review_author(self, review_index):
-        """Get review author by review index"""
-        pass
-
-    def get_review_date(self, review_index):
-        """Get review date by review index"""
-        pass
-
-    def get_review_text(self, review_index):
-        """Get review text by review index"""
-        pass
-
-    def get_review_rating(self, review_index):
-        """Get review rating by review index"""
-        pass
-
-    # Validation methods
-    def is_product_detail_page_loaded(self):
-        """Check if product detail page is loaded"""
-        pass
-
-    def is_add_to_cart_button_present(self):
-        """Check if add to cart button is present"""
-        pass
-
-    def is_product_image_displayed(self):
-        """Check if product image is displayed"""
-        pass
-
-    def is_quantity_selector_present(self):
-        """Check if quantity selector is present"""
-        pass
-
-    def is_product_gallery_present(self):
-        """Check if product gallery is present"""
-        pass
-
-    def is_reviews_section_present(self):
-        """Check if reviews section is present"""
-        pass
-
-    def is_related_products_present(self):
-        """Check if related products section is present"""
-        pass
+    def expect_comment_input_to_be_visible(self):
+        self.expect_element_to_be_visible(product_detail_page_locators.COMMENT_INPUT)

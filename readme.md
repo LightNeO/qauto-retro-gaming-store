@@ -271,16 +271,19 @@ tests/
    - TC-058: Verify filter top rated works
 
 3. **Product Detail Tests**
-   - Verify product detail page loads
-   - Verify product information is displayed correctly
+   - TC-059: Verify product detail page loads within 10 seconds
+   - TC-060: Verify navigating to product detail page
+   - TC-061: Verify back to products button navication
+   - TC-062: Verify product name is displayed
+   - TC-063: Verify product price is displayed
+   - TC-064: Verify product description is displayed
+   - TC-065: Verify product avarge rating is displayed
+   - TC-066: Verify product rating count is displayed
+   - TC-067: Verify product rating stars is displayed
    - Verify add to cart button is present
    - Verify product images display
-   - Verify product gallery functionality
    - Verify quantity selector works
-   - Verify product specifications display
-   - Verify related products section
-   - Verify product reviews display
-   - Verify back to products navigation
+
 
 4. **Product Interaction Tests**
    - Verify clicking product card navigates to detail page

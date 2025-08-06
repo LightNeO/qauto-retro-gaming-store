@@ -134,3 +134,42 @@ class TestProductDetailPage:
         product_detail_page.navigate_to_random_product_detail_page()
         product_detail_page.wait_for_page_load()
         product_detail_page.expect_rating_stars_to_be_visible()
+
+    @pytest.mark.test
+    def test_product_add_to_cart_button_is_displayed(self, product_detail_page):
+        """
+        TC-068: Verify product add to cart button is displayed
+
+        Steps:
+        1. Navigate to product detail page
+        2. Verify product add to cart button is displayed
+        """
+        product_detail_page.navigate_to_random_product_detail_page()
+        product_detail_page.wait_for_page_load()
+        product_detail_page.expect_add_to_cart_button_to_be_visible()
+
+    @pytest.mark.test
+    def test_product_quantity_input_is_displayed(self, product_detail_page):
+        """
+        TC-069: Verify product quantity input is displayed
+
+        Steps:
+        1. Navigate to product detail page
+        2. Verify product quantity input is displayed
+        """
+        product_detail_page.navigate_to_random_product_detail_page()
+        product_detail_page.wait_for_page_load()
+        product_detail_page.expect_quantity_input_to_be_visible()
+
+    @pytest.mark.test
+    def test_product_comment_input_is_displayed(self, product_detail_page):
+        """
+        TC-070: Verify product comment input is displayed
+
+        Steps:
+        1. Navigate to product detail page
+        2. Verify product comment input is displayed
+        """
+        product_detail_page.navigate_to_random_product_detail_page()
+        product_detail_page.wait_for_page_load()
+        product_detail_page.expect_comment_input_to_be_visible()
