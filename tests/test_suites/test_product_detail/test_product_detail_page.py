@@ -57,7 +57,7 @@ class TestProductDetailPage:
             "body"
         ), "Products page did not load correctly"
 
-    @pytest.mark.test
+    @pytest.mark.smoke
     def test_product_name_is_displayed(self, product_detail_page):
         """
         TC-062: Verify product name is displayed
@@ -70,7 +70,7 @@ class TestProductDetailPage:
         product_detail_page.wait_for_page_load()
         product_detail_page.expect_product_name_to_be_visible()
 
-    @pytest.mark.test
+    @pytest.mark.smoke
     def test_product_price_is_displayed(self, product_detail_page):
         """
         TC-063: Verify product price is displayed
@@ -83,7 +83,7 @@ class TestProductDetailPage:
         product_detail_page.wait_for_page_load()
         product_detail_page.expect_product_price_to_be_visible()
 
-    @pytest.mark.test
+    @pytest.mark.smoke
     def test_product_description_is_displayed(self, product_detail_page):
         """
         TC-064: Verify product description is displayed
@@ -96,7 +96,7 @@ class TestProductDetailPage:
         product_detail_page.wait_for_page_load()
         product_detail_page.expect_product_description_to_be_visible()
 
-    @pytest.mark.test
+    @pytest.mark.smoke
     def test_product_avarge_rating_is_displayed(self, product_detail_page):
         """
         TC-065: Verify product avarge rating is displayed
@@ -109,7 +109,7 @@ class TestProductDetailPage:
         product_detail_page.wait_for_page_load()
         product_detail_page.expect_avarage_rating_to_be_visible()
 
-    @pytest.mark.test
+    @pytest.mark.smoke
     def test_product_rating_count_is_displayed(self, product_detail_page):
         """
         TC-066: Verify product rating count is displayed
@@ -122,7 +122,7 @@ class TestProductDetailPage:
         product_detail_page.wait_for_page_load()
         product_detail_page.expect_rating_count_to_be_visible()
 
-    @pytest.mark.test
+    @pytest.mark.smoke
     def test_product_rating_stars_is_displayed(self, product_detail_page):
         """
         TC-067: Verify product rating stars is displayed
@@ -135,7 +135,7 @@ class TestProductDetailPage:
         product_detail_page.wait_for_page_load()
         product_detail_page.expect_rating_stars_to_be_visible()
 
-    @pytest.mark.test
+    @pytest.mark.smoke
     def test_product_add_to_cart_button_is_displayed(self, product_detail_page):
         """
         TC-068: Verify product add to cart button is displayed
@@ -148,7 +148,7 @@ class TestProductDetailPage:
         product_detail_page.wait_for_page_load()
         product_detail_page.expect_add_to_cart_button_to_be_visible()
 
-    @pytest.mark.test
+    @pytest.mark.smoke
     def test_product_quantity_input_is_displayed(self, product_detail_page):
         """
         TC-069: Verify product quantity input is displayed
@@ -161,7 +161,7 @@ class TestProductDetailPage:
         product_detail_page.wait_for_page_load()
         product_detail_page.expect_quantity_input_to_be_visible()
 
-    @pytest.mark.test
+    @pytest.mark.smoke
     def test_product_comment_input_is_displayed(self, product_detail_page):
         """
         TC-070: Verify product comment input is displayed
@@ -173,3 +173,16 @@ class TestProductDetailPage:
         product_detail_page.navigate_to_random_product_detail_page()
         product_detail_page.wait_for_page_load()
         product_detail_page.expect_comment_input_to_be_visible()
+
+    @pytest.mark.test
+    def test_product_image_is_displayed(self, product_detail_page):
+        """
+        TC-071: Verify product image is displayed
+
+        Steps:
+        1. Navigate to product detail page
+        2. Verify product image is displayed
+        """
+        product_detail_page.navigate_to_random_product_detail_page()
+        product_detail_page.wait_for_page_load()
+        product_detail_page.expect_product_image_to_be_visible()

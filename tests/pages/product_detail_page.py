@@ -87,3 +87,14 @@ class ProductDetailPage(BasePage):
 
     def expect_comment_input_to_be_visible(self):
         self.expect_element_to_be_visible(product_detail_page_locators.COMMENT_INPUT)
+
+    def get_product_image(self):
+        return self.get_element(product_detail_page_locators.PRODUCT_IMAGE)
+
+    def expect_product_image_to_be_visible(self):
+        product_image = self.get_product_image()
+        image_width = product_image.evaluate("el => el.naturalWidth")
+        image_height = product_image.evaluate("el => el.naturalHeight")
+        assert (
+            image_width > 0 and image_height > 0
+        ), "Product image failed to load(EXPECTED FOR IMAGE ID 10)"

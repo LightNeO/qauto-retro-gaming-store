@@ -120,4 +120,4 @@ class ProductsPage(BasePage):
             next_rating = float(all_products_ratings[i + 1].text_content().replace("⭐ ", ""))
             assert (
                 current_rating >= next_rating
-            ), f"Product {i + 1} rating is not in descending order"
+            ), f"Product {i + 1} rating is not in descending order(EXPECTED FOR PRODUCT ID 7)"
