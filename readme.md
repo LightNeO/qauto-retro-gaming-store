@@ -280,6 +280,10 @@ tests/
    - TC-065: Verify product avarge rating is displayed
    - TC-066: Verify product rating count is displayed
    - TC-067: Verify product rating stars is displayed
+   - TC-068: Verify product add to cart button is displayed
+   - TC-069: Verify product quantity input is displayed
+   - TC-070: Verify product comment input is displayed
+   - TC-071: Verify product image is displayed
    - Verify add to cart button is present
    - Verify product images display
    - Verify quantity selector works
