@@ -174,7 +174,7 @@ class TestProductDetailPage:
         product_detail_page.wait_for_page_load()
         product_detail_page.expect_comment_input_to_be_visible()
 
-    @pytest.mark.test
+    @pytest.mark.smoke
     def test_product_image_is_displayed(self, product_detail_page):
         """
         TC-071: Verify product image is displayed
@@ -186,3 +186,27 @@ class TestProductDetailPage:
         product_detail_page.navigate_to_random_product_detail_page()
         product_detail_page.wait_for_page_load()
         product_detail_page.expect_product_image_to_be_visible()
+
+    @pytest.mark.test
+    def test_add_to_cart_button_for_not_logged_in_user(self, product_detail_page):
+        """
+        TC-072: Verify add to cart button is not displayed for not logged in user
+
+        Steps:
+        1. Navigate to product detail page as not logged in user
+        2. Click the add to cart button
+        3. Verify that error message is displayed
+        """
+        product_detail_page.navigate_to_random_product_detail_page()
+        product_detail_page.wait_for_page_load()
+        dialog_message = None
+
+        def handle_dialog(dialog):
+            nonlocal dialog_message
+            dialog_message = dialog.message
+            dialog.accept()
+        product_detail_page.page.on("dialog", handle_dialog)
+        product_detail_page.click_add_to_cart_button()
+        product_detail_page.page.wait_for_timeout(1000)
+        assert dialog_message == "Please log in to add items to cart.", f"Expected dialog message not found. Got: {dialog_message}"
+        product_detail_page.page.remove_listener("dialog", handle_dialog)

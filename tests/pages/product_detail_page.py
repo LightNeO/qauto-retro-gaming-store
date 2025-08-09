@@ -98,3 +98,6 @@ class ProductDetailPage(BasePage):
         assert (
             image_width > 0 and image_height > 0
         ), "Product image failed to load(EXPECTED FOR IMAGE ID 10)"
+
+    def click_add_to_cart_button(self):
+        self.click_element(product_detail_page_locators.ADD_TO_CART_BUTTON)

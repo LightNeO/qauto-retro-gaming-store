@@ -110,3 +110,9 @@ class BasePage:
 
     def count_elements(self, locator):
         return self.page.locator(locator).count()
+
+    def get_element_attribute(self, locator, attribute):
+        try:
+            return self.page.locator(locator).get_attribute(attribute)
+        except Exception as e:
+            raise Exception(f"Failed to get attribute '{attribute}' from element {locator}: {e}")
