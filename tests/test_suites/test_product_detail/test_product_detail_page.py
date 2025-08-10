@@ -3,6 +3,9 @@ from tests.test_data.product_detail_page_test_data import PERFORMANCE_THRESHOLD_
 from tests.utils.performance_helper import PerformanceHelper
 from tests.locators import product_detail_page_locators
 from tests.test_data import product_detail_page_test_data
+from tests.pages.login_page import LoginPage
+from tests.pages.home_page import HomePage
+import time
 
 
 class TestProductDetailPage:
@@ -189,7 +192,7 @@ class TestProductDetailPage:
         product_detail_page.wait_for_page_load()
         product_detail_page.expect_product_image_to_be_visible()
 
-    @pytest.mark.test
+    @pytest.mark.smoke
     def test_add_to_cart_button_for_not_logged_in_user(self, product_detail_page):
         """
         TC-072: Verify add to cart button is not displayed for not logged in user
@@ -201,5 +204,37 @@ class TestProductDetailPage:
         """
         product_detail_page.navigate_to_random_product_detail_page()
         product_detail_page.wait_for_page_load()
-        dialog_message = product_detail_page.check_error_message_after_click(product_detail_page_locators.ADD_TO_CART_BUTTON)
-        assert dialog_message == product_detail_page_test_data.EXPECTED_ERROR_MESSAGE_AFTER_CLICK_ADD_TO_CART_BUTTON, f"Expected dialog message not found. Got: {dialog_message}"
+        dialog_message = product_detail_page.check_error_message_after_click(
+            product_detail_page_locators.ADD_TO_CART_BUTTON
+        )
+        assert (
+            dialog_message
+            == product_detail_page_test_data.EXPECTED_ERROR_MESSAGE_AFTER_CLICK_ADD_TO_CART_BUTTON
+        ), f"Expected dialog message not found. Got: {dialog_message}"
+
+    @pytest.mark.test
+    def test_quantity_input_functionality(self, product_detail_page, login_page, home_page):
+        """
+        TC-073: Verify quantity input functionality
+
+        Steps:
+        1. Navigate to product detail page
+        2. Verify quantity input is functional
+        """
+        login_page.navigate_to_login_page()
+        login_page.login_with_existing_user()
+        product_detail_page.navigate_to_random_product_detail_page()
+        product_detail_page.wait_for_page_load()
+        quantity_input = product_detail_page.get_element(
+            product_detail_page_locators.QUANTITY_INPUT
+        )
+        start_value = int(quantity_input.get_attribute("value"))
+        quantity_input.press("ArrowUp")
+        time.sleep(1)
+        new_value = start_value + 1
+        product_detail_page.click_add_to_cart_button()
+        home_page.click_menu_item("cart")
+        product_detail_page.wait_for_page_load()
+        cart_quantity = int(product_detail_page.get_element_attribute(product_detail_page_locators.PRODUCT_QUANTITY_IN_CART, "value"))
+        assert cart_quantity == new_value, f"Cart quantity is not correct. Got: {cart_quantity}"
+        product_detail_page.click_element(product_detail_page_locators.REMOVE_FROM_CART_BUTTON)

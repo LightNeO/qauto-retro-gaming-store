@@ -287,10 +287,6 @@ tests/
 
 4. **Product Interaction Tests**
    - TC-072: Verify add to cart button is not displayed for not logged in user
-   - Verify clicking product card navigates to detail page
-   - Verify product ratings display (if available)
-   - Verify product comments display (if available)
-   - Verify gallery thumbnail navigation
    - Verify quantity increase/decrease functionality
    - Verify add to cart from detail page
 
