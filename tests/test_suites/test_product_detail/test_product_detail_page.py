@@ -1,6 +1,8 @@
 import pytest
 from tests.test_data.product_detail_page_test_data import PERFORMANCE_THRESHOLD_MS
 from tests.utils.performance_helper import PerformanceHelper
+from tests.locators import product_detail_page_locators
+from tests.test_data import product_detail_page_test_data
 
 
 class TestProductDetailPage:
@@ -199,14 +201,5 @@ class TestProductDetailPage:
         """
         product_detail_page.navigate_to_random_product_detail_page()
         product_detail_page.wait_for_page_load()
-        dialog_message = None
-
-        def handle_dialog(dialog):
-            nonlocal dialog_message
-            dialog_message = dialog.message
-            dialog.accept()
-        product_detail_page.page.on("dialog", handle_dialog)
-        product_detail_page.click_add_to_cart_button()
-        product_detail_page.page.wait_for_timeout(1000)
-        assert dialog_message == "Please log in to add items to cart.", f"Expected dialog message not found. Got: {dialog_message}"
-        product_detail_page.page.remove_listener("dialog", handle_dialog)
+        dialog_message = product_detail_page.check_error_message_after_click(product_detail_page_locators.ADD_TO_CART_BUTTON)
+        assert dialog_message == product_detail_page_test_data.EXPECTED_ERROR_MESSAGE_AFTER_CLICK_ADD_TO_CART_BUTTON, f"Expected dialog message not found. Got: {dialog_message}"

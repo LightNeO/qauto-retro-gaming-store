@@ -101,3 +101,15 @@ class ProductDetailPage(BasePage):
 
     def click_add_to_cart_button(self):
         self.click_element(product_detail_page_locators.ADD_TO_CART_BUTTON)
+
+    def check_error_message_after_click(self, element_locator):
+        dialog_message = None
+
+        def handle_dialog(dialog):
+            nonlocal dialog_message
+            dialog_message = dialog.message
+            dialog.accept()
+        self.page.on("dialog", handle_dialog)
+        self.click_element(element_locator)
+        self.page.wait_for_timeout(1000)
+        return dialog_message
