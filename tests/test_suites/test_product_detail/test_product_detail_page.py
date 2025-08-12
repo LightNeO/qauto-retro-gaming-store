@@ -225,13 +225,7 @@ class TestProductDetailPage:
         login_page.login_with_existing_user()
         product_detail_page.navigate_to_random_product_detail_page()
         product_detail_page.wait_for_page_load()
-        quantity_input = product_detail_page.get_element(
-            product_detail_page_locators.QUANTITY_INPUT
-        )
-        start_value = int(quantity_input.get_attribute("value"))
-        quantity_input.press("ArrowUp")
-        time.sleep(1)
-        new_value = start_value + 1
+        new_value = product_detail_page.increase_quantity_and_return_new_value()
         product_detail_page.click_add_to_cart_button()
         home_page.click_menu_item("cart")
         product_detail_page.wait_for_page_load()

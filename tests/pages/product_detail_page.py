@@ -1,6 +1,7 @@
 from .base_page import BasePage
 from ..locators import product_detail_page_locators
 from ..locators import homepage_locators
+import time
 import random
 
 
@@ -113,3 +114,13 @@ class ProductDetailPage(BasePage):
         self.click_element(element_locator)
         self.page.wait_for_timeout(1000)
         return dialog_message
+
+    def increase_quantity_and_return_new_value(self):
+        quantity_input = self.get_element(
+            product_detail_page_locators.QUANTITY_INPUT
+        )
+        start_value = int(quantity_input.get_attribute("value"))
+        quantity_input.press("ArrowUp")
+        time.sleep(1)
+        return start_value + 1
+
