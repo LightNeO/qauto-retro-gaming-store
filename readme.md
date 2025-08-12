@@ -287,8 +287,8 @@ tests/
 
 4. **Product Interaction Tests**
    - TC-072: Verify add to cart button is not displayed for not logged in user
-   - Verify quantity increase/decrease functionality
-   - Verify add to cart from detail page
+   - TC-073: Verify quantity input and add to cart functionality
+   - TC-074: Verify comment posting functionality
 
 #### Deliverables:
 - Complete product page object classes

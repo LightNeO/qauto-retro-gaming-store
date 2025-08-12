@@ -212,8 +212,8 @@ class TestProductDetailPage:
             == product_detail_page_test_data.EXPECTED_ERROR_MESSAGE_AFTER_CLICK_ADD_TO_CART_BUTTON
         ), f"Expected dialog message not found. Got: {dialog_message}"
 
-    @pytest.mark.test
-    def test_quantity_input_functionality(self, product_detail_page, login_page, home_page):
+    @pytest.mark.smoke
+    def test_quantity_input_and_add_to_cart_functionality(self, product_detail_page, login_page, home_page):
         """
         TC-073: Verify quantity input functionality
 
@@ -232,3 +232,24 @@ class TestProductDetailPage:
         cart_quantity = int(product_detail_page.get_element_attribute(product_detail_page_locators.PRODUCT_QUANTITY_IN_CART, "value"))
         assert cart_quantity == new_value, f"Cart quantity is not correct. Got: {cart_quantity}"
         product_detail_page.click_element(product_detail_page_locators.REMOVE_FROM_CART_BUTTON)
+
+    @pytest.mark.test
+    def test_comment_posting_functionality(self, product_detail_page, login_page):
+        """
+        TC-074: Verify comment posting functionality
+
+        Steps:
+        1. Navigate to product detail page
+        2. Verify comment posting is functional
+        """
+        product_detail_page.clear_all_comments()
+        login_page.navigate_to_login_page()
+        login_page.login_with_existing_user()
+        product_detail_page.navigate_to_random_product_detail_page()
+        product_detail_page.wait_for_page_load()
+        product_detail_page.clear_all_comments()
+        product_detail_page.expect_comment_input_to_be_visible()
+        product_detail_page.fill_element(product_detail_page_locators.COMMENT_INPUT, product_detail_page_test_data.TEST_COMMENT)
+        product_detail_page.click_element(product_detail_page_locators.POST_COMMENT_BUTTON)
+        comment_text = product_detail_page.get_element_text(product_detail_page_locators.FIRST_COMMENT_INPUT)
+        assert comment_text == product_detail_page_test_data.TEST_COMMENT, f"Expected comment text '{product_detail_page_test_data.TEST_COMMENT}', but got '{comment_text}'"

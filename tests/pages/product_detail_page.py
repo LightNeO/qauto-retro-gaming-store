@@ -3,6 +3,7 @@ from ..locators import product_detail_page_locators
 from ..locators import homepage_locators
 import time
 import random
+import requests
 
 
 class ProductDetailPage(BasePage):
@@ -46,7 +47,9 @@ class ProductDetailPage(BasePage):
         return self.get_element_text(product_detail_page_locators.PRODUCT_DESCRIPTION)
 
     def expect_product_description_to_be_visible(self):
-        self.expect_element_to_be_visible(product_detail_page_locators.PRODUCT_DESCRIPTION)
+        self.expect_element_to_be_visible(
+            product_detail_page_locators.PRODUCT_DESCRIPTION
+        )
 
     def get_avarage_rating(self):
         return self.get_element_text(product_detail_page_locators.AVARAGE_RATING)
@@ -75,7 +78,9 @@ class ProductDetailPage(BasePage):
         return self.get_element(product_detail_page_locators.ADD_TO_CART_BUTTON)
 
     def expect_add_to_cart_button_to_be_visible(self):
-        self.expect_element_to_be_visible(product_detail_page_locators.ADD_TO_CART_BUTTON)
+        self.expect_element_to_be_visible(
+            product_detail_page_locators.ADD_TO_CART_BUTTON
+        )
 
     def get_quantity_input(self):
         return self.get_element(product_detail_page_locators.QUANTITY_INPUT)
@@ -110,17 +115,58 @@ class ProductDetailPage(BasePage):
             nonlocal dialog_message
             dialog_message = dialog.message
             dialog.accept()
+
         self.page.on("dialog", handle_dialog)
         self.click_element(element_locator)
         self.page.wait_for_timeout(1000)
         return dialog_message
 
     def increase_quantity_and_return_new_value(self):
-        quantity_input = self.get_element(
-            product_detail_page_locators.QUANTITY_INPUT
-        )
+        quantity_input = self.get_element(product_detail_page_locators.QUANTITY_INPUT)
         start_value = int(quantity_input.get_attribute("value"))
         quantity_input.press("ArrowUp")
         time.sleep(1)
         return start_value + 1
 
+    def clear_all_comments(self):
+        """Clear all comments using the admin endpoint"""
+
+        # Login as admin using JWT endpoint (NOT session-based login)
+        session = requests.Session()
+        login_response = session.post(
+            "https://web-production-c47e.up.railway.app/api/auth/token/",  # JWT endpoint
+            json={"username": "Admin", "password": "Admin"},
+        )
+
+        if login_response.status_code != 200:
+            raise Exception(f"Login failed with status {login_response.status_code}")
+
+        # Get JWT token from response
+        token_data = login_response.json()
+        token = token_data.get("access")  # JWT returns 'access' token
+        if not token:
+            raise Exception(f"No access token received. Response: {token_data}")
+
+        print(f"Login successful, token: {token[:20]}...")
+
+        # Set up headers with JWT token
+        headers = {"Authorization": f"Bearer {token}"}
+
+        try:
+            # Use the new clear_all endpoint
+            clear_response = session.delete(
+                "https://web-production-c47e.up.railway.app/api/comments/clear_all/",
+                headers=headers,
+            )
+
+            if clear_response.status_code == 204:
+                print("✅ All comments cleared successfully!")
+                return True
+            else:
+                print(f"❌ Failed to clear comments: {clear_response.status_code}")
+                print(f"Response: {clear_response.text}")
+                return False
+
+        except Exception as e:
+            print(f"Error in clear_all_comments: {e}")
+            return False
