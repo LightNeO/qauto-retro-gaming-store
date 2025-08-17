@@ -303,17 +303,8 @@ tests/
 **Goal**: Implement shopping cart test cases
 
 #### Tasks:
-1. **Add to Cart Tests**
-   - Verify add to cart button is present on product detail page
-   - Verify item is added to cart successfully
-   - Verify cart icon shows updated count
-   - Verify cart page displays added item
-
 2. **Cart Management Tests**
-   - Verify cart page loads successfully
-   - Verify item details are correct in cart
-   - Verify quantity selector is present
-   - Verify remove button is present
+   - TC-075: Verify cart total price is displayed correctly
 
 3. **Cart Operations Tests**
    - Verify quantity can be increased

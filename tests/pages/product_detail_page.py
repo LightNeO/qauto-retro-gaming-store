@@ -128,6 +128,24 @@ class ProductDetailPage(BasePage):
         time.sleep(1)
         return start_value + 1
 
+    def sum_all_prices_in_cart(self):
+        all_prices = self.get_elements(product_detail_page_locators.ALL_PRICES_IN_CART)
+        total_price = 0
+        for price in all_prices:
+            total_price += float(price.text_content().replace("$", ""))
+        return total_price
+
+    def delete_all_products_from_cart(self):
+        while True:
+            buttons = self.get_elements(
+                product_detail_page_locators.REMOVE_FROM_CART_BUTTON
+            )
+            if not buttons:
+                break
+            buttons[0].click()
+            time.sleep(1)
+            self.page.wait_for_timeout(500)
+
     def clear_all_comments(self):
         """Clear all comments using the admin endpoint"""
 

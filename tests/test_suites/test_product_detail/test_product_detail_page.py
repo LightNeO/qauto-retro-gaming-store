@@ -213,7 +213,9 @@ class TestProductDetailPage:
         ), f"Expected dialog message not found. Got: {dialog_message}"
 
     @pytest.mark.smoke
-    def test_quantity_input_and_add_to_cart_functionality(self, product_detail_page, login_page, home_page):
+    def test_quantity_input_and_add_to_cart_functionality(
+        self, product_detail_page, login_page, home_page
+    ):
         """
         TC-073: Verify quantity input functionality
 
@@ -229,11 +231,19 @@ class TestProductDetailPage:
         product_detail_page.click_add_to_cart_button()
         home_page.click_menu_item("cart")
         product_detail_page.wait_for_page_load()
-        cart_quantity = int(product_detail_page.get_element_attribute(product_detail_page_locators.PRODUCT_QUANTITY_IN_CART, "value"))
-        assert cart_quantity == new_value, f"Cart quantity is not correct. Got: {cart_quantity}"
-        product_detail_page.click_element(product_detail_page_locators.REMOVE_FROM_CART_BUTTON)
+        cart_quantity = int(
+            product_detail_page.get_element_attribute(
+                product_detail_page_locators.PRODUCT_QUANTITY_IN_CART, "value"
+            )
+        )
+        assert (
+            cart_quantity == new_value
+        ), f"Cart quantity is not correct. Got: {cart_quantity}"
+        product_detail_page.click_element(
+            product_detail_page_locators.REMOVE_FROM_CART_BUTTON
+        )
 
-    @pytest.mark.test
+    @pytest.mark.smoke
     def test_comment_posting_functionality(self, product_detail_page, login_page):
         """
         TC-074: Verify comment posting functionality
@@ -249,7 +259,52 @@ class TestProductDetailPage:
         product_detail_page.wait_for_page_load()
         product_detail_page.clear_all_comments()
         product_detail_page.expect_comment_input_to_be_visible()
-        product_detail_page.fill_element(product_detail_page_locators.COMMENT_INPUT, product_detail_page_test_data.TEST_COMMENT)
-        product_detail_page.click_element(product_detail_page_locators.POST_COMMENT_BUTTON)
-        comment_text = product_detail_page.get_element_text(product_detail_page_locators.FIRST_COMMENT_INPUT)
-        assert comment_text == product_detail_page_test_data.TEST_COMMENT, f"Expected comment text '{product_detail_page_test_data.TEST_COMMENT}', but got '{comment_text}'"
+        product_detail_page.fill_element(
+            product_detail_page_locators.COMMENT_INPUT,
+            product_detail_page_test_data.TEST_COMMENT,
+        )
+        product_detail_page.click_element(
+            product_detail_page_locators.POST_COMMENT_BUTTON
+        )
+        comment_text = product_detail_page.get_element_text(
+            product_detail_page_locators.FIRST_COMMENT_INPUT
+        )
+        assert (
+            comment_text == product_detail_page_test_data.TEST_COMMENT
+        ), f"Expected comment text '{product_detail_page_test_data.TEST_COMMENT}', but got '{comment_text}'"
+
+    @pytest.mark.test
+    def test_cart_total_price_is_displayed_correctly(
+        self, product_detail_page, login_page, home_page
+    ):
+        """
+        TC-075: Verify cart total price is displayed correctly
+
+        Steps:
+        1. Navigate to product detail page
+        2. Add two products to cart
+        3. Verify cart total price is displayed correctly
+        """
+        login_page.navigate_to_login_page()
+        login_page.login_with_existing_user()
+        product_detail_page.navigate_to_random_product_detail_page()
+        product_detail_page.wait_for_page_load()
+        product_detail_page.click_add_to_cart_button()
+        product_detail_page.navigate_to_random_product_detail_page()
+        product_detail_page.wait_for_page_load()
+        product_detail_page.click_add_to_cart_button()
+        home_page.click_menu_item("cart")
+        product_detail_page.wait_for_page_load()
+        expected_total_price = round(
+            float(
+                product_detail_page.get_element_text(
+                    product_detail_page_locators.TOAL_PRICE_IN_CART
+                ).replace("$", "")
+            ),
+            2,
+        )
+        actual_total_price = round(product_detail_page.sum_all_prices_in_cart(), 2)
+        assert (
+            expected_total_price == actual_total_price
+        ), f"Expected total price {expected_total_price}, but got {actual_total_price}"
+        product_detail_page.delete_all_products_from_cart()
