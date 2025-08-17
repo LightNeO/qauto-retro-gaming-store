@@ -3,9 +3,6 @@ from tests.test_data.product_detail_page_test_data import PERFORMANCE_THRESHOLD_
 from tests.utils.performance_helper import PerformanceHelper
 from tests.locators import product_detail_page_locators
 from tests.test_data import product_detail_page_test_data
-from tests.pages.login_page import LoginPage
-from tests.pages.home_page import HomePage
-import time
 
 
 class TestProductDetailPage:
