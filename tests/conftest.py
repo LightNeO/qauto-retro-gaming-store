@@ -6,6 +6,7 @@ from tests.pages.registration_page import RegistrationPage
 from tests.pages.login_page import LoginPage
 from tests.pages.products_page import ProductsPage
 from tests.pages.product_detail_page import ProductDetailPage
+from tests.utils.logger import logger
 
 
 class TestConfig:
@@ -131,3 +132,27 @@ def products_page(page, base_url):
 def product_detail_page(page, base_url):
     """ProductDetailPage instance for each product detail page test"""
     return ProductDetailPage(page, base_url)
+
+
+@pytest.hookimpl(tryfirst=True, hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    """
+    Pytest hook to capture test result and log failures.
+    This hook is executed for each test function.
+    """
+    # Execute all other hooks to obtain the report object
+    outcome = yield
+    report = outcome.get_result()
+
+    # We only look at the final result of the test (when 'call' is happening)
+    if report.when == "call":
+        if report.failed:
+            # Get the test name and the failure details
+            test_name = item.name
+            error_message = report.longreprtext
+            logger.error(f"Test Failed: {test_name}")
+            logger.error(f"Failure Details:\n{error_message}")
+        elif report.passed:
+            logger.info(f"Test Passed: {item.name}")
+        elif report.skipped:
+            logger.warning(f"Test Skipped: {item.name}")

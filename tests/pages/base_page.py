@@ -1,34 +1,44 @@
 from playwright.sync_api import expect
+from tests.utils.logger import logger
 
 
 class BasePage:
 
     def __init__(self, page):
         self.page = page
+        logger.info(f"Initialized Page: {self.__class__.__name__}")
 
     def wait_for_element(self, locator, timeout=10000):
+        logger.info(f"Waiting for element: {locator}")
         try:
             self.page.wait_for_selector(locator, timeout=timeout)
         except Exception as e:
-            raise Exception(f"Element {locator} not found within {timeout}ms: {e}")
+            logger.error(f"Element {locator} not found within {timeout}ms: {e}")
+            raise
 
     def click_element(self, locator):
+        logger.info(f"Clicking element: {locator}")
         try:
             self.page.click(locator)
         except Exception as e:
-            raise Exception(f"Failed to click element {locator}: {e}")
+            logger.error(f"Failed to click element {locator}: {e}")
+            raise
 
     def fill_element(self, locator, text):
+        logger.info(f"Filling element {locator} with text: '{text}'")
         try:
             self.page.fill(locator, text)
         except Exception as e:
-            raise Exception(f"Failed to fill element {locator} with '{text}': {e}")
+            logger.error(f"Failed to fill element {locator} with '{text}': {e}")
+            raise
 
     def get_element_text(self, locator):
+        logger.info(f"Getting text from element: {locator}")
         try:
             return self.page.locator(locator).text_content()
         except Exception as e:
-            raise Exception(f"Failed to get text from element {locator}: {e}")
+            logger.error(f"Failed to get text from element {locator}: {e}")
+            raise
 
     def is_element_visible(self, locator):
         try:
