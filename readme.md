@@ -303,14 +303,11 @@ tests/
 **Goal**: Implement shopping cart test cases
 
 #### Tasks:
-2. **Cart Management Tests**
-   - TC-075: Verify cart total price is displayed correctly
-
 3. **Cart Operations Tests**
-   - Verify quantity can be increased
-   - Verify quantity can be decreased
-   - Verify item can be removed from cart
-   - Verify cart total updates correctly
+   - TC-075: Verify cart total price is displayed correctly and item can be removed
+      Verify quantity can be increased
+      Verify quantity can be decreased
+      Verify cart total updates correctly
 
 4. **Cart Bug Tests**
    - Verify phantom cart bug (20% chance total doesn't update)

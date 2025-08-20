@@ -272,36 +272,39 @@ class TestProductDetailPage:
 
     @pytest.mark.test
     def test_cart_total_price_is_displayed_correctly(
-        self, product_detail_page, login_page, home_page
+        self, product_detail_page_logged_in
     ):
         """
-        TC-075: Verify cart total price is displayed correctly
+        TC-075: Verify cart total price is displayed correctly and item can be removed
 
         Steps:
-        1. Navigate to product detail page
-        2. Add two products to cart
-        3. Verify cart total price is displayed correctly
+        1. Login with existing user
+        2. Navigate to product detail page
+        3. Add two products to cart
+        4. Verify cart total price is displayed correctly and item can be removed
         """
-        login_page.navigate_to_login_page()
-        login_page.login_with_existing_user()
-        product_detail_page.navigate_to_random_product_detail_page()
-        product_detail_page.wait_for_page_load()
-        product_detail_page.click_add_to_cart_button()
-        product_detail_page.navigate_to_random_product_detail_page()
-        product_detail_page.wait_for_page_load()
-        product_detail_page.click_add_to_cart_button()
-        home_page.click_menu_item("cart")
-        product_detail_page.wait_for_page_load()
+        product_detail_page_logged_in.navigate_to_random_product_detail_page()
+        product_detail_page_logged_in.wait_for_page_load()
+        product_detail_page_logged_in.click_add_to_cart_button()
+        product_detail_page_logged_in.navigate_to_random_product_detail_page()
+        product_detail_page_logged_in.wait_for_page_load()
+        product_detail_page_logged_in.click_add_to_cart_button()
+        product_detail_page_logged_in.click_menu_item("cart")
+        product_detail_page_logged_in.wait_for_page_load()
         expected_total_price = round(
             float(
-                product_detail_page.get_element_text(
+                product_detail_page_logged_in.get_element_text(
                     product_detail_page_locators.TOAL_PRICE_IN_CART
                 ).replace("$", "")
             ),
             2,
         )
-        actual_total_price = round(product_detail_page.sum_all_prices_in_cart(), 2)
+        actual_total_price = round(
+            product_detail_page_logged_in.sum_all_prices_in_cart(), 2
+        )
         assert (
             expected_total_price == actual_total_price
         ), f"Expected total price {expected_total_price}, but got {actual_total_price}"
-        product_detail_page.delete_all_products_from_cart()
+        product_detail_page_logged_in.delete_all_products_from_cart()
+
+

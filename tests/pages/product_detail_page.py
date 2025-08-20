@@ -28,6 +28,17 @@ class ProductDetailPage(BasePage):
         self.page.click(homepage_locators.PRODUCTS_MENU_ITEM)
         pass
 
+    def click_menu_item(self, menu_name):
+        menu_items = {
+            "products": homepage_locators.PRODUCTS_MENU_ITEM,
+            "cart": homepage_locators.CART_MENU_ITEM,
+            "login": homepage_locators.LOGIN_MENU_ITEM,
+            "register": homepage_locators.REGISTER_MENU_ITEM,
+        }
+        key = str(menu_name).lower()
+        if key in menu_items:
+            self.click_element(menu_items[key])
+
     # Product information methods
     def get_product_name(self):
         return self.get_element_text(product_detail_page_locators.PRODUCT_NAME)
