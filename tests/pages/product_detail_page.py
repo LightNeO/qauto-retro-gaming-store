@@ -154,8 +154,7 @@ class ProductDetailPage(BasePage):
             if not buttons:
                 break
             buttons[0].click()
-            time.sleep(1)
-            self.page.wait_for_timeout(500)
+            self.page.wait_for_timeout(1000)
 
     def clear_all_comments(self):
         """Clear all comments using the admin endpoint"""

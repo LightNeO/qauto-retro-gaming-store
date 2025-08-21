@@ -270,7 +270,7 @@ class TestProductDetailPage:
             comment_text == product_detail_page_test_data.TEST_COMMENT
         ), f"Expected comment text '{product_detail_page_test_data.TEST_COMMENT}', but got '{comment_text}'"
 
-    @pytest.mark.test
+    @pytest.mark.smoke
     def test_cart_total_price_is_displayed_correctly(
         self, product_detail_page_logged_in
     ):
@@ -307,4 +307,34 @@ class TestProductDetailPage:
         ), f"Expected total price {expected_total_price}, but got {actual_total_price}"
         product_detail_page_logged_in.delete_all_products_from_cart()
 
+    @pytest.mark.test
+    def test_total_in_cart_updates_correctly(self, product_detail_page_logged_in):
+        """
+        TC-076: Verify total in cart updates correctly
 
+        Steps:
+        1. Login with existing user
+        2. Navigate to product detail page
+        3. Add two products to cart
+        4. Open cart page
+        5. Remove one product from cart
+        6. Verify total in cart updates correctly
+        """
+        product_detail_page_logged_in.navigate_to_random_product_detail_page()
+        product_detail_page_logged_in.wait_for_page_load()
+        product_detail_page_logged_in.click_add_to_cart_button()
+        product_detail_page_logged_in.navigate_to_random_product_detail_page()
+        product_detail_page_logged_in.wait_for_page_load()
+        product_detail_page_logged_in.click_add_to_cart_button()
+        product_detail_page_logged_in.click_menu_item("cart")
+        product_detail_page_logged_in.wait_for_page_load()
+        total_price_before_remove = product_detail_page_logged_in.get_element_text(
+            product_detail_page_locators.TOAL_PRICE_IN_CART
+        )
+        product_detail_page_logged_in.delete_all_products_from_cart()
+        total_price_after_remove = product_detail_page_logged_in.get_element_text(
+            product_detail_page_locators.TOAL_PRICE_IN_CART
+        )
+        assert (
+            total_price_before_remove > total_price_after_remove
+        ), "Total price did not update correctly"
