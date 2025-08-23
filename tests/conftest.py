@@ -7,6 +7,7 @@ from tests.pages.registration_page import RegistrationPage
 from tests.pages.login_page import LoginPage
 from tests.pages.products_page import ProductsPage
 from tests.pages.product_detail_page import ProductDetailPage
+from tests.pages.checkout_page import CheckoutPage
 from tests.utils.logger import logger
 from tests.utils.api_auth import APIAuth
 
@@ -38,7 +39,11 @@ class TestConfig:
     HEADLESS = os.getenv("HEADLESS", "false").lower() == "true"
     TIMEOUT = int(os.getenv("TIMEOUT", "20000"))
     SLOW_MO = int(os.getenv("SLOW_MO", "1000"))
-    API_LOGIN_PATHS = os.getenv("API_LOGIN_PATHS", "").split(",") if os.getenv("API_LOGIN_PATHS") else None
+    API_LOGIN_PATHS = (
+        os.getenv("API_LOGIN_PATHS", "").split(",")
+        if os.getenv("API_LOGIN_PATHS")
+        else None
+    )
 
 
 @pytest.fixture(scope="session")
@@ -189,6 +194,70 @@ def products_page_logged_in(page_logged_in, base_url):
 @pytest.fixture
 def product_detail_page_logged_in(page_logged_in, base_url):
     return ProductDetailPage(page_logged_in, base_url)
+
+
+@pytest.fixture
+def checkout_page(page_logged_in, base_url):
+    return CheckoutPage(page_logged_in, base_url)
+
+
+@pytest.fixture
+def checkout_page_with_cart(page_logged_in, base_url):
+    """Checkout page fixture with user logged in and product in cart"""
+    from tests.pages.product_detail_page import ProductDetailPage
+
+    # Create product detail page instance
+    product_page = ProductDetailPage(page_logged_in, base_url)
+
+    # Navigate to cart page first to clear existing items
+    page_logged_in.goto(f"{base_url}/cart")
+    page_logged_in.wait_for_load_state("networkidle")
+    product_page.delete_all_products_from_cart()
+
+    # Navigate to a product and add it to cart
+    product_page.navigate_to_random_product_detail_page()
+    product_page.wait_for_page_load()
+
+    # Add product to cart
+    product_page.click_add_to_cart_button()
+
+    # Navigate to checkout page
+    checkout_page = CheckoutPage(page_logged_in, base_url)
+    checkout_page.page.goto(f"{base_url}/checkout")
+    checkout_page.wait_for_page_load()
+
+    return checkout_page
+
+
+@pytest.fixture
+def checkout_page_with_specific_product(page_logged_in, base_url):
+    """Checkout page fixture with user logged in and specific product in cart"""
+    from tests.pages.product_detail_page import ProductDetailPage
+
+    def _create_checkout_with_product(product_id=1):
+        # Create product detail page instance
+        product_page = ProductDetailPage(page_logged_in, base_url)
+
+        # Navigate to cart page first to clear existing items
+        page_logged_in.goto(f"{base_url}/cart")
+        page_logged_in.wait_for_load_state("networkidle")
+        product_page.delete_all_products_from_cart()
+
+        # Navigate to specific product and add it to cart
+        product_page.navigate_to_product_detail_by_id(product_id)
+        product_page.wait_for_page_load()
+
+        # Add product to cart
+        product_page.click_add_to_cart_button()
+
+        # Navigate to checkout page
+        checkout_page = CheckoutPage(page_logged_in, base_url)
+        checkout_page.page.goto(f"{base_url}/checkout")
+        checkout_page.wait_for_page_load()
+
+        return checkout_page
+
+    return _create_checkout_with_product
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)

@@ -1,4 +1,3 @@
-from turtle import home
 import pytest
 from tests.test_data import homepage_test_data
 from tests.locators import homepage_locators

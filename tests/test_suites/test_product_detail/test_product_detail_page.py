@@ -307,7 +307,7 @@ class TestProductDetailPage:
         ), f"Expected total price {expected_total_price}, but got {actual_total_price}"
         product_detail_page_logged_in.delete_all_products_from_cart()
 
-    @pytest.mark.test
+    @pytest.mark.smoke
     def test_total_in_cart_updates_correctly(self, product_detail_page_logged_in):
         """
         TC-076: Verify total in cart updates correctly

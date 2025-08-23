@@ -305,14 +305,7 @@ tests/
 #### Tasks:
 3. **Cart Operations Tests**
    - TC-075: Verify cart total price is displayed correctly and item can be removed
-      Verify quantity can be increased
-      Verify quantity can be decreased
-      Verify cart total updates correctly
-
-4. **Cart Bug Tests**
-   - Verify phantom cart bug (20% chance total doesn't update)
-   - Implement retry logic for cart calculations
-   - Document bug occurrence rates
+   - TC-076: Verify total in cart updates correctly
 
 #### Deliverables:
 - Complete cart page object class
