@@ -211,7 +211,7 @@ class TestProductDetailPage:
 
     @pytest.mark.smoke
     def test_quantity_input_and_add_to_cart_functionality(
-        self, product_detail_page, login_page, home_page
+        self, product_detail_page_logged_in
     ):
         """
         TC-073: Verify quantity input functionality
@@ -220,23 +220,24 @@ class TestProductDetailPage:
         1. Navigate to product detail page
         2. Verify quantity input is functional
         """
-        login_page.navigate_to_login_page()
-        login_page.login_with_existing_user()
-        product_detail_page.navigate_to_random_product_detail_page()
-        product_detail_page.wait_for_page_load()
-        new_value = product_detail_page.increase_quantity_and_return_new_value()
-        product_detail_page.click_add_to_cart_button()
-        home_page.click_menu_item("cart")
-        product_detail_page.wait_for_page_load()
+        product_detail_page_logged_in.navigate_to_random_product_detail_page()
+        product_detail_page_logged_in.click_menu_item("cart")
+        product_detail_page_logged_in.delete_all_products_from_cart()
+        product_detail_page_logged_in.navigate_to_random_product_detail_page()
+        product_detail_page_logged_in.wait_for_page_load()
+        new_value = product_detail_page_logged_in.increase_quantity_and_return_new_value()
+        product_detail_page_logged_in.click_add_to_cart_button()
+        product_detail_page_logged_in.click_menu_item("cart")
+        product_detail_page_logged_in.wait_for_page_load()
         cart_quantity = int(
-            product_detail_page.get_element_attribute(
+            product_detail_page_logged_in.get_element_attribute(
                 product_detail_page_locators.PRODUCT_QUANTITY_IN_CART, "value"
             )
         )
         assert (
             cart_quantity == new_value
         ), f"Cart quantity is not correct. Got: {cart_quantity}"
-        product_detail_page.click_element(
+        product_detail_page_logged_in.click_element(
             product_detail_page_locators.REMOVE_FROM_CART_BUTTON
         )
 
@@ -283,6 +284,7 @@ class TestProductDetailPage:
         3. Add two products to cart
         4. Verify cart total price is displayed correctly and item can be removed
         """
+
         product_detail_page_logged_in.navigate_to_random_product_detail_page()
         product_detail_page_logged_in.wait_for_page_load()
         product_detail_page_logged_in.click_add_to_cart_button()

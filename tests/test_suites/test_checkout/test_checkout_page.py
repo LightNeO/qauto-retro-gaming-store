@@ -4,7 +4,7 @@ import pytest
 
 class TestCheckoutPage:
 
-    @pytest.mark.test
+    @pytest.mark.smoke
     def test_checkout_page_loads_with_cart_items(self, checkout_page_with_cart):
         """
         TC-001: Verify checkout page loads correctly with items in cart
