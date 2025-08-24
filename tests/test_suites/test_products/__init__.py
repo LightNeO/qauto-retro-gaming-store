@@ -1,1 +1,0 @@
-# Products atomic test suite 
