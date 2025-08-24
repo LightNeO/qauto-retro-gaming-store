@@ -318,12 +318,12 @@ tests/
 
 #### Tasks:
 1. **Checkout Navigation Tests**
-   - Verify proceed to checkout button is present
-   - Verify checkout page loads successfully
-   - Verify checkout form fields are present
+   - TC-077: Verify checkout page loads correctly
+   - TC-078: Verify checkout elements are visible
+
 
 2. **Checkout Form Tests**
-   - Verify each form field accepts valid input
+   - TC-079: Verify name field is mandatory
    - Verify form validation works correctly
    - Verify payment information can be entered
 
